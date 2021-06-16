@@ -74,6 +74,8 @@ namespace UASGrafkom
         private Vector3 posObject4 = new Vector3(2f, 0, 0);//kanan
         private Vector3 posObject5 = new Vector3(0, 2f, 0);//atas
         private int countertime = 0;
+
+        bool mataharidepan = true;
         private readonly float[] _vertices =
         {
              // Position          Normal
@@ -120,7 +122,7 @@ namespace UASGrafkom
             -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
         };
 
-        private readonly Vector3 _lightPos = new Vector3(-.3f, .5f, .5f);
+        private Vector3 _lightPos = new Vector3(0f, 0f, 1f);
         private int _vertexBufferObject;
         private int _vaoModel;
         private int _vaoLamp;
@@ -177,12 +179,10 @@ namespace UASGrafkom
             //testkotak.scale(.1f);
             environment.LoadObjFile("../../../Assets/env.obj");
             environment.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            environment.scale(.5f);
             environment.setColor(new Vector3(1, 0, 0));
 
             jalan.LoadObjFile("../../../Assets/jalan.obj");
             jalan.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            jalan.scale(.5f);
             jalan.setColor(new Vector3(0.6f, .17f, .17f));
 
             rumahsquid.LoadObjFile("../../../Assets/rumahsquidward.obj");
@@ -567,6 +567,24 @@ namespace UASGrafkom
                 }
             }
 
+            if (KeyboardState.IsKeyPressed(Keys.Z))
+            {
+                if (mataharidepan)
+                {
+                    _lightPos.Z -= .1f;
+                    _lightPos.Y += .1f;
+                }
+                else
+                {
+                    _lightPos.Z -= .1f;
+                    _lightPos.Y -= .1f;
+                }
+                if(_lightPos.Y >= 1.5f)
+                {
+                    mataharidepan = false;
+                }
+                //_camera.Position = _lightPos;
+            }
 
 
             //rotasi pakai mouse
