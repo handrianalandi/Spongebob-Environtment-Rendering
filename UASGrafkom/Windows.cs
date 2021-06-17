@@ -33,7 +33,21 @@ namespace UASGrafkom
         Mesh rumahsquidwardpintu = new Mesh();
         Mesh rumahsquidwardgagangpintu= new Mesh();
         Mesh rumahsquidwardkaca= new Mesh();
-        
+
+        //rumah spongebob
+        Mesh rumahspongbase = new Mesh();
+        Mesh kacajendelapinturumahspong = new Mesh();
+        Mesh pipabiru = new Mesh();
+        Mesh bungahijau = new Mesh();
+        Mesh bungakuning = new Mesh();
+        Mesh bungapink = new Mesh();
+
+
+
+        //rumah spongebob
+        Mesh rumahpatrick = new Mesh();
+      
+
 
         private Camera _camera;
         private Vector3 _objectPos;
@@ -139,6 +153,86 @@ namespace UASGrafkom
             rumahsquidwardbase.child.Add(rumahsquidwardgagangpintu);
             rumahsquidwardbase.child.Add(rumahsquidwardkaca);
         }
+
+        protected void createRumahSpongebob()
+        {
+            rumahspongbase.LoadObjFile("../../../Assets/rumahspong.obj");
+            rumahspongbase.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahspongbase.setColor(new Vector3((float)225 / 255, (float)183 / 255, (float)20 / 255));
+            rumahspongbase.setAmbientStg(.1f);
+            rumahspongbase.setShininess(1);
+            rumahspongbase.setSpecularStg(.4f);
+            rumahspongbase.translate(19.5f, 15.0f, -8.0f);
+            rumahspongbase.scale(.013f);
+
+            
+            kacajendelapinturumahspong.LoadObjFile("../../../Assets/kacajendelapinturumahspong.obj");
+            kacajendelapinturumahspong.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            kacajendelapinturumahspong.setColor(new Vector3((float)195 / 255, (float)195 / 255, (float)195 / 255));
+            kacajendelapinturumahspong.setAmbientStg(.3f);
+            kacajendelapinturumahspong.setShininess(1);
+            kacajendelapinturumahspong.setSpecularStg(.4f);
+            kacajendelapinturumahspong.translate(-.007f, .12f, -.51f);
+            kacajendelapinturumahspong.scale(.5f);
+
+            pipabiru.LoadObjFile("../../../Assets/pipabiru.obj");
+            pipabiru.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            pipabiru.setColor(new Vector3((float)29 / 255, (float)152 / 255, (float)182 / 255));
+            pipabiru.setAmbientStg(.3f);
+            pipabiru.setShininess(1);
+            pipabiru.setSpecularStg(.4f);
+            pipabiru.translate(.785f, .543f, -.205f);
+            pipabiru.scale(.45f);
+
+            bungahijau.LoadObjFile("../../../Assets/bungahijau.obj");
+            bungahijau.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            bungahijau.setColor(new Vector3((float)0 / 255, (float)243 / 255, (float)0 / 255));
+            bungahijau.setAmbientStg(.3f);
+            bungahijau.setShininess(1);
+            bungahijau.setSpecularStg(.4f);
+            bungahijau.translate(.545f, .255f, .03f);
+            bungahijau.scale(.45f);
+
+            bungakuning.LoadObjFile("../../../Assets/bungakuning.obj");
+            bungakuning.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            bungakuning.setColor(new Vector3((float)254 / 255, (float)210 / 255, (float)80 / 255));
+            bungakuning.setAmbientStg(.3f);
+            bungakuning.setShininess(1);
+            bungakuning.setSpecularStg(.4f);
+            bungakuning.translate(.545f, .255f, .03f);
+            bungakuning.scale(.45f);
+
+            bungapink.LoadObjFile("../../../Assets/bungapink.obj");
+            bungapink.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            bungapink.setColor(new Vector3((float)255 / 255, (float)120 / 255, (float)11 / 255));
+            bungapink.setAmbientStg(.3f);
+            bungapink.setShininess(1);
+            bungapink.setSpecularStg(.4f);
+            bungapink.translate(.545f, .255f, .03f);
+            bungapink.scale(.45f);
+
+            rumahspongbase.child.Add(kacajendelapinturumahspong);
+            rumahspongbase.child.Add(pipabiru);
+            rumahspongbase.child.Add(bungahijau);
+            rumahspongbase.child.Add(bungakuning);
+            rumahspongbase.child.Add(bungapink);
+
+
+        }
+
+        protected void createRumahPatrick()
+        {
+            rumahpatrick.LoadObjFile("../../../Assets/rumahpatrick.obj");
+            rumahpatrick.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahpatrick.setColor(new Vector3((float)76 / 255, (float)1 / 255, (float)28 / 255));
+            rumahpatrick.setAmbientStg(.1f);
+            rumahpatrick.setShininess(1);
+            rumahpatrick.setSpecularStg(.4f);
+            rumahpatrick.translate(-25.5f, 11.0f, 1.0f);
+            rumahpatrick.scale(.013f);
+
+           
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -168,7 +262,11 @@ namespace UASGrafkom
             //rumah squidward
             createRumahSquidward();
 
+            //rumah spongebob
+            createRumahSpongebob();
 
+            //rumah patrick
+            createRumahPatrick();
 
 
 
@@ -186,7 +284,7 @@ namespace UASGrafkom
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            
+
 
             mataharisun.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
@@ -196,7 +294,19 @@ namespace UASGrafkom
             //rumah squidward
             rumahsquidwardbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
-            
+            //rumah spongebob
+            rumahspongbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            kacajendelapinturumahspong.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            pipabiru.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            bungahijau.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            bungakuning.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            bungapink.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+
+
+            //rumah patrick
+            rumahpatrick.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
 
             SwapBuffers();
 
