@@ -35,6 +35,7 @@ namespace UASGrafkom
         int counter = 0;
         float ambientStrength=.2f;
         float shininess = 32;
+        float specularStrength = .5f;
 
         //menambahkan hirarki kedalam parent
         public List<Mesh> child = new List<Mesh>();
@@ -92,6 +93,10 @@ namespace UASGrafkom
         public void setShininess(float shine)
         {
             shininess = shine;
+        }
+        public void setSpecularStg(float spec)
+        {
+            specularStrength = spec;
         }
         public void setupObject(float Sizex, float Sizey, string abc)
         {
@@ -151,6 +156,7 @@ namespace UASGrafkom
 
             _shader.SetFloat("ambientStg", ambientStrength);
             _shader.SetFloat("shininess", shininess);
+            _shader.SetFloat("specularStg", specularStrength);
 
 
             GL.DrawArrays(PrimitiveType.Triangles, 0, realVertices.Count / 2);

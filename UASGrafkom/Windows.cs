@@ -23,8 +23,16 @@ namespace UASGrafkom
         
         Mesh tanah = new Mesh();
         Mesh jalan = new Mesh();
-        Mesh rumahsquid = new Mesh();
         Mesh mataharisun = new Mesh();
+
+        //rumah squidward
+        Mesh rumahsquidwardbase = new Mesh();
+        Mesh rumahsquidwardmodif = new Mesh();
+        Mesh rumahsquidwardmata = new Mesh();
+        Mesh rumahsquidwardpaku = new Mesh();
+        Mesh rumahsquidwardpintu = new Mesh();
+        Mesh rumahsquidwardgagangpintu= new Mesh();
+        Mesh rumahsquidwardkaca= new Mesh();
         
 
         private Camera _camera;
@@ -57,6 +65,80 @@ namespace UASGrafkom
             );
             return secretFormulaMatrix;
         }
+        protected void createRumahSquidward()
+        {
+            rumahsquidwardbase.LoadObjFile("../../../Assets/rsquidwardbase.obj");
+            rumahsquidwardbase.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardbase.setColor(new Vector3((float)0 / 255, (float)40 / 255, (float)89 / 255));
+            rumahsquidwardbase.setAmbientStg(.3f);
+            rumahsquidwardbase.setShininess(1);
+            rumahsquidwardbase.setSpecularStg(.4f);
+            rumahsquidwardbase.translate(-.05f, .3f, -.2f);
+            rumahsquidwardbase.scale(.7f);
+
+            rumahsquidwardmodif.LoadObjFile("../../../Assets/rsquidwardmodif.obj");
+            rumahsquidwardmodif.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardmodif.setColor(new Vector3((float)0 / 255, (float)60 / 255, (float)109 / 255));
+            rumahsquidwardmodif.setAmbientStg(.3f);
+            rumahsquidwardmodif.setShininess(1);
+            rumahsquidwardmodif.setSpecularStg(.4f);
+            rumahsquidwardmodif.translate(-.05f, .3f, -.2f);
+            rumahsquidwardmodif.scale(.7f);
+
+            rumahsquidwardmata.LoadObjFile("../../../Assets/rsquidwardmata.obj");
+            rumahsquidwardmata.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardmata.setColor(new Vector3((float)0 / 255, (float)100 / 255, (float)149 / 255));
+            rumahsquidwardmata.setAmbientStg(.2f);
+            rumahsquidwardmata.setShininess(1);
+            rumahsquidwardmata.setSpecularStg(.2f);
+            rumahsquidwardmata.translate(-.05f, .3f, -.2f);
+            rumahsquidwardmata.scale(.7f);
+
+            rumahsquidwardpaku.LoadObjFile("../../../Assets/rsquidwardpaku.obj");
+            rumahsquidwardpaku.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardpaku.setColor(new Vector3((float)0 / 255, (float)60 / 255, (float)109 / 255));
+            rumahsquidwardpaku.setAmbientStg(.5f);
+            rumahsquidwardpaku.setShininess(128);
+            rumahsquidwardpaku.setSpecularStg(.9f);
+            rumahsquidwardpaku.translate(-.05f, .3f, -.2f);
+            rumahsquidwardpaku.scale(.7f);
+
+            rumahsquidwardpintu.LoadObjFile("../../../Assets/rsquidwardpintu.obj");
+            rumahsquidwardpintu.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardpintu.setColor(new Vector3((float)184 / 255, (float)109 / 255, (float)49 / 255));
+            rumahsquidwardpintu.setAmbientStg(.9f);
+            rumahsquidwardpintu.setShininess(2);
+            rumahsquidwardpintu.setSpecularStg(.2f);
+            rumahsquidwardpintu.translate(-.05f, .3f, -.2f);
+            rumahsquidwardpintu.scale(.7f);
+
+
+            rumahsquidwardgagangpintu.LoadObjFile("../../../Assets/rsquidwardgagangpintu.obj");
+            rumahsquidwardgagangpintu.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardgagangpintu.setColor(new Vector3((float)164 / 255, (float)99 / 255, (float)29 / 255));
+            rumahsquidwardgagangpintu.setAmbientStg(.5f);
+            rumahsquidwardgagangpintu.setShininess(128);
+            rumahsquidwardgagangpintu.setSpecularStg(.5f);
+            rumahsquidwardgagangpintu.translate(-.05f, .3f, -.2f);
+            rumahsquidwardgagangpintu.scale(.7f);
+
+            rumahsquidwardkaca.LoadObjFile("../../../Assets/rsquidwardkaca.obj");
+            rumahsquidwardkaca.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahsquidwardkaca.setColor(new Vector3((float)0 / 255, (float)180 / 255, (float)229 / 255));
+            rumahsquidwardkaca.setAmbientStg(.1f);
+            rumahsquidwardkaca.setShininess(128);
+            rumahsquidwardkaca.setSpecularStg(.5f);
+            rumahsquidwardkaca.translate(-.05f, .3f, -.2f);
+            rumahsquidwardkaca.scale(.7f);
+
+
+            rumahsquidwardbase.child.Add(rumahsquidwardmodif);
+            rumahsquidwardbase.child.Add(rumahsquidwardmata);
+            rumahsquidwardbase.child.Add(rumahsquidwardpaku);
+            rumahsquidwardbase.child.Add(rumahsquidwardpintu);
+            rumahsquidwardbase.child.Add(rumahsquidwardgagangpintu);
+            rumahsquidwardbase.child.Add(rumahsquidwardkaca);
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -73,6 +155,7 @@ namespace UASGrafkom
             tanah.scale(.5f);
             tanah.setAmbientStg(.4f);
             tanah.setShininess(1);
+            tanah.setSpecularStg(.1f);
 
             jalan.LoadObjFile("../../../Assets/jalan.obj");
             jalan.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -81,6 +164,9 @@ namespace UASGrafkom
             jalan.setShininess(4);
             jalan.translate(0, .3f, 1f);
             jalan.scale(.3f);
+
+            //rumah squidward
+            createRumahSquidward();
 
 
 
@@ -107,6 +193,8 @@ namespace UASGrafkom
             tanah.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
             jalan.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
+            //rumah squidward
+            rumahsquidwardbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
             
 
@@ -283,7 +371,9 @@ namespace UASGrafkom
             {
                 Console.WriteLine(mataharisun.getRealPos());
                 Console.WriteLine(mataharisun.scalefloat);
-                tanah.rotateall(1f, 0, 0);
+                rumahsquidwardbase.backtozero();
+                rumahsquidwardbase.rotateall(0, .5f, 0);
+                rumahsquidwardbase.backtonormal();
             }
             if (KeyboardState.IsKeyPressed(Keys.Left))
             {
@@ -349,7 +439,7 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyPressed(Keys.C))
             {
-                _camera.Position = jalan.getRealPos();
+                _camera.Position = rumahsquidwardmodif.getRealPos();
             }
 
                 //rotasi pakai mouse
