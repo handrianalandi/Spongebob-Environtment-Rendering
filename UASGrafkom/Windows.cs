@@ -12,130 +12,20 @@ namespace UASGrafkom
 {
     class Windows : GameWindow
     {
-        //private float[] _vertices =
-        //{
-        //     //position          // texture
-        //     0.5f,  0.5f,  0.0f, 1.0f, 1.0f, // top right
-        //     0.5f, -0.5f,  0.0f, 1.0f, 0.0f, // bottom right
-        //    -0.5f, -0.5f,  0.0f, 0.0f, 0.0f, // bottom left
-        //    -0.5f,  0.5f,  0.0f, 0.0f, 1.0f, // top left
-
-        //    // 0.5f,  0.5f,  0.5f, 0.0f, 0.0f, // top right
-        //    // 0.5f, -0.5f,  0.5f, 0.0f, 0.0f, // bottom right
-        //    //-0.5f, -0.5f,  0.5f, 0.0f, 0.0f, // bottom left
-        //    //-0.5f,  0.5f,  0.5f, 0.0f, 0.0f, // top left
-
-        //    // 0.5f,  0.5f, -0.5f, 0.0f, 0.0f, // top right
-        //    // 0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // bottom right
-        //    //-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // bottom left
-        //    //-0.5f,  0.5f, -0.5f, 0.0f, 0.0f  // top left
-        //};
-
-        //private uint[] _indices =
-        //{
-        //    // depan
-        //    0, 1, 3,
-        //    1, 2, 3,
-        //    //// belakang
-        //    //4, 5, 7,
-        //    //5, 6, 7,
-        //    //// atas
-        //    //0, 3, 7,
-        //    //0, 4, 7,
-        //    //// bawah
-        //    //1, 2, 6,
-        //    //1, 5, 6,
-        //    //// kiri
-        //    //2, 3, 6,
-        //    //3, 6, 7,
-        //    //// kanan
-        //    //0, 1, 5,
-        //    //0, 4, 5
-        //};
-
-        //private int _vertexBufferObject;
-        //private int _vertexArrayObject;
-        //private Shader _shader;
-
-        //private int _elementBufferObject;
-        //private Texture _texture;
+        
 
         // Camera
 
-        Mesh object1 = new Mesh();//depan
-        Mesh object2 = new Mesh();//blakang
-        Mesh object3 = new Mesh();//kiri
-        Mesh object4 = new Mesh();//kanan
-        Mesh object5 = new Mesh();//atas
+        
+        private Vector3 _sunPos = new Vector3(0f, 5f, 5f);
+        
 
-        private Vector3 posObject1 = new Vector3(0, 0, -2f);//depan
-        private Vector3 posObject2 = new Vector3(0, 0, 2f);//blakang
-        private Vector3 posObject3 = new Vector3(-2f, 0, 0);//kiri
-        private Vector3 posObject4 = new Vector3(2f, 0, 0);//kanan
-        private Vector3 posObject5 = new Vector3(0, 2f, 0);//atas
-        private int countertime = 0;
-
-        bool mataharidepan = true;
-        private readonly float[] _vertices =
-        {
-             // Position          Normal
-            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f, // Front face
-             0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f, // Back face
-             0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f, // Left face
-            -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-
-             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f, // Right face
-             0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-
-            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f, // Bottom face
-             0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-
-            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f, // Top face
-             0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
-        };
-
-        private Vector3 _lightPos = new Vector3(0f, 0f, 1f);
-        private int _vertexBufferObject;
-        private int _vaoModel;
-        private int _vaoLamp;
-        private Shader _lampShader;
-        private Shader _lightingShader;
-
-        Mesh testkotak = new Mesh();
-        Mesh environment = new Mesh();
-        Mesh rumahsquid = new Mesh();
+        
+        Mesh tanah = new Mesh();
         Mesh jalan = new Mesh();
-        Mesh sofa = new Mesh();
-        Mesh bantal1 = new Mesh();
-        Mesh bantal2 = new Mesh();
+        Mesh rumahsquid = new Mesh();
+        Mesh mataharisun = new Mesh();
+        
 
         private Camera _camera;
         private Vector3 _objectPos;
@@ -143,6 +33,7 @@ namespace UASGrafkom
         private Vector2 _lastMousePosition;
         private bool _firstmove = true;
         private float sensitivity = .1f;
+        bool mataharidepan = true;
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -168,108 +59,31 @@ namespace UASGrafkom
         }
         protected override void OnLoad()
         {
-            GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+            GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
 
+            mataharisun.LoadObjFile("../../../Assets/bantal.obj");
+            mataharisun.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            mataharisun.setColor(new Vector3(1, 1, 1));
+            mataharisun.translate(_sunPos.X, _sunPos.Y, _sunPos.Z);
 
-            //testing mesh
-            //testkotak.LoadObjFile("../../../Assets/mentriangle.obj");
-            //testkotak.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            //testkotak.setColor(new Vector3(0, 0, 1));
-            //testkotak.scale(.1f);
-            environment.LoadObjFile("../../../Assets/env.obj");
-            environment.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            environment.setColor(new Vector3(1, 0, 0));
+            tanah.LoadObjFile("../../../Assets/tanah.obj");
+            tanah.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            tanah.setColor(new Vector3((float)208/255, (float)210 / 255, (float)170 / 255));
+            tanah.scale(.5f);
+            tanah.setAmbientStg(.4f);
+            tanah.setShininess(1);
 
             jalan.LoadObjFile("../../../Assets/jalan.obj");
             jalan.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            jalan.setColor(new Vector3(0.6f, .17f, .17f));
-
-            rumahsquid.LoadObjFile("../../../Assets/rumahsquidward.obj");
-            rumahsquid.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            rumahsquid.setColor(new Vector3(0.6f, .17f, .17f));
-            rumahsquid.translate(0, .3f, -.5f);
-
-            sofa.LoadObjFile("../../../Assets/sofafix.obj");
-            sofa.setColor(new Vector3(1, 0, 0));
-            sofa.setupObject((float)Size.X, (float)Size.Y, "lighting");
-
-            bantal1.LoadObjFile("../../../Assets/bantal.obj");
-            bantal1.setColor(new Vector3(0, 1, 0));
-            bantal1.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            bantal1.translate(-.105f, .08f, -.08f);
-
-            bantal2.LoadObjFile("../../../Assets/bantal.obj");
-            bantal2.setColor(new Vector3(0, 0, 1));
-            bantal2.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            bantal2.translate(.095f, .08f, -.08f);
-
-            sofa.child.Add(bantal1);
-            sofa.child.Add(bantal2);
-
-            //sofa.child.Add(environment);
-            //testkotak.rotate();
-            //testing mesh
+            jalan.setColor(new Vector3((float)104 / 255, (float)122 / 255, (float)130 / 255));
+            jalan.setAmbientStg(.6f);
+            jalan.setShininess(4);
+            jalan.translate(0, .3f, 1f);
+            jalan.scale(.3f);
 
 
 
-            //light----------------------
-
-            _vertexBufferObject = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
-            _lightingShader = new Shader("../../../Shaders/shaderl.vert", "../../../Shaders/lighting.frag");
-            _lampShader = new Shader("../../../Shaders/shaderl.vert", "../../../Shaders/shaderl.frag");
-
-            //Initialize the vao for the model
-
-            _vaoModel = GL.GenVertexArray();
-            GL.BindVertexArray(_vaoModel);
-            var vertexLocation = _lightingShader.GetAttribLocation("aPosition");
-            GL.EnableVertexAttribArray(vertexLocation);
-            //GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
-
-            // We now need to define the layout of the normal so the shader can use it
-            var normalLocation = _lightingShader.GetAttribLocation("aNormal");
-            GL.EnableVertexAttribArray(normalLocation);
-            GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
-
-            //Initialize the vao for the lamp, this is mostly the same as the code for the model cube
-
-            _vaoLamp = GL.GenVertexArray();
-            GL.BindVertexArray(_vaoLamp);
-            var positionLocation = _lampShader.GetAttribLocation("aPos");
-            GL.EnableVertexAttribArray(positionLocation);
-            GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 0);
-
-
-            //Set the vertex attributes(only position data for our lamp)
-            vertexLocation = _lampShader.GetAttribLocation("aPosition");
-            GL.EnableVertexAttribArray(vertexLocation);
-            //GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
-
-            ////lightend--------------------
-
-
-
-
-
-            //object1.createBoxVertices(posObject1.X, posObject1.Y, posObject1.Z);
-            //object1.setupObject((float)Size.X, (float)Size.Y, "");
-
-            //object2.createBoxVertices(posObject2.X, posObject2.Y, posObject2.Z);
-            //object2.setupObject((float)Size.X, (float)Size.Y, "");
-
-            //object3.createBoxVertices(posObject3.X, posObject3.Y, posObject3.Z);
-            //object3.setupObject((float)Size.X, (float)Size.Y, "");
-
-            //object4.createBoxVertices(posObject4.X, posObject4.Y, posObject4.Z);
-            //object4.setupObject((float)Size.X, (float)Size.Y, "");
-
-            //object5.createBoxVertices(posObject5.X, posObject5.Y, posObject5.Z);
-            //object5.setupObject((float)Size.X, (float)Size.Y, "");
 
 
             // Camera
@@ -286,67 +100,15 @@ namespace UASGrafkom
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            //_lampShader.Use();
+            
 
-            Matrix4 lampMatrix = Matrix4.CreateScale(0.2f); // We scale the lamp cube down a bit to make it less dominant
-            lampMatrix = lampMatrix * Matrix4.CreateTranslation(_lightPos);
+            mataharisun.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
-            _lampShader.SetMatrix4("transform", lampMatrix);
-            _lampShader.SetMatrix4("view", _camera.GetViewMatrix());
-            _lampShader.SetMatrix4("projection", _camera.GetProjectionMatrix());
-
-            //GL.DrawArrays(PrimitiveType.TriangleFan, 0, 36);
-            //object1.render(_camera, new Vector3(1, 0, 0));
-            //object2.render(_camera, new Vector3(0, 1, 0));
-            //object3.render(_camera, new Vector3(0, 0, 1));
-            //object4.render(_camera, new Vector3(1, 1, 0));
-            //object5.render(_camera, new Vector3(0, 1, 1));
-
-            //_lightingShader.SetMatrix4("transform", Matrix4.Identity);
-            //_lightingShader.SetMatrix4("view", _camera.GetViewMatrix());
-            //_lightingShader.SetMatrix4("projection", _camera.GetProjectionMatrix());
-
-            //_lightingShader.SetVector3("objectColor", new Vector3(1.0f, 0.5f, 0.31f));
-            //_lightingShader.SetVector3("lightColor", new Vector3(1.0f, 1.0f, 1.0f));
-            //_lightingShader.SetVector3("lightPos", _lightPos);
-            //_lightingShader.SetVector3("viewPos", _camera.Position);
-
-            ////light------------------
-
-            //GL.BindVertexArray(_vaoModel);
-
-            //_lightingShader.Use();
-            //GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            // Matrix4.Identity is used as the matrix, since we just want to draw it at 0, 0, 0
-            //testkotak.render(_camera, new Vector3(1f, 0, 0), new Vector3(1f, 1f, 1f), _lightPos);
-            //environment.render(_camera, new Vector3(1f, 1f, 1f), _lightPos);
-            jalan.render(_camera, new Vector3(1f, 1f, 1f), _lightPos);
-            //testkotak.render(_camera , new Vector3(1f, 1f, 1f), _lightPos);
-
-            rumahsquid.render(_camera, new Vector3(1f, 1f, 1f), _lightPos);
-
-            //sofa.render(_camera, new Vector3(1f, 1f, 1f), _lightPos);
-
-            //bantal1.render(_camera, new Vector3(1f, 1f, 1f), _lightPos);
-            //environment.scale(.5f);
-            //if (countertime == 1000)
-            //{
-            //    testkotak.rotate();
-            //    countertime = 0;
-            //}
-
-            //else
-            //{
-            //    countertime++;
-            //}
-
-            // Draw the lamp, this is mostly the same as for the model cube
-
-            //GL.BindVertexArray(_vaoLamp);
+            tanah.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            jalan.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
 
-            //lightend--------------
+            
 
             SwapBuffers();
 
@@ -519,33 +281,33 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyDown(Keys.B))
             {
-                Console.WriteLine(bantal1.getRealPos());
-                Console.WriteLine(bantal1.scalefloat);
-                sofa.rotateall(1f, 0, 0);
+                Console.WriteLine(mataharisun.getRealPos());
+                Console.WriteLine(mataharisun.scalefloat);
+                tanah.rotateall(1f, 0, 0);
             }
             if (KeyboardState.IsKeyPressed(Keys.Left))
             {
-                sofa.move(.01f, 0, 0);
+                tanah.move(.01f, 0, 0);
             }
             if (KeyboardState.IsKeyPressed(Keys.Right))
             {
-                sofa.move(-.01f, 0, 0);
+                tanah.move(-.01f, 0, 0);
             }
             if (KeyboardState.IsKeyPressed(Keys.Up))
             {
-                sofa.move(0, 0, 0.01f);
+                tanah.move(0, 0, 0.01f);
             }
             if (KeyboardState.IsKeyPressed(Keys.Down))
             {
-                sofa.move(0, 0, -0.01f);
+                tanah.move(0, 0, -0.01f);
             }
             if (KeyboardState.IsKeyDown(Keys.E))
             {
-                sofa.rotateall(0, .1f);
+                tanah.rotateall(0, .1f);
             }
             if (KeyboardState.IsKeyDown(Keys.Q))
             {
-                sofa.rotateall(0, -.1f);
+                tanah.rotateall(0, -.1f);
             }
             //plus sens
             if (KeyboardState.IsKeyReleased(Keys.PageUp))
@@ -571,24 +333,27 @@ namespace UASGrafkom
             {
                 if (mataharidepan)
                 {
-                    _lightPos.Z -= .1f;
-                    _lightPos.Y += .1f;
+                    _sunPos.Z -= .1f;
+                    _sunPos.Y += .1f;
                 }
                 else
                 {
-                    _lightPos.Z -= .1f;
-                    _lightPos.Y -= .1f;
+                    _sunPos.Z -= .1f;
+                    _sunPos.Y -= .1f;
                 }
-                if(_lightPos.Y >= 1.5f)
+                if(_sunPos.Y >= 1.5f)
                 {
                     mataharidepan = false;
                 }
-                //_camera.Position = _lightPos;
+                //_camera.Position = _sunPos;
+            }
+            if (KeyboardState.IsKeyPressed(Keys.C))
+            {
+                _camera.Position = jalan.getRealPos();
             }
 
-
-            //rotasi pakai mouse
-            if (!IsFocused)
+                //rotasi pakai mouse
+                if (!IsFocused)
             {
                 return;
             }

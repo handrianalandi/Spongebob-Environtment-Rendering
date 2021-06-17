@@ -3,6 +3,8 @@ out vec4 FragColor;
 
 uniform vec3 objectColor;
 uniform vec3 lightColor;
+uniform float ambientStg;
+uniform float shininess;
 
 uniform vec3 lightPos; //The position of the light.
 uniform vec3 viewPos; //The position of the view and/or of the player.
@@ -12,7 +14,7 @@ in vec3 FragPos; //The fragment position.
 void main()
 {
     //The ambient color is the color where the light does not directly hit the object.
-    float ambientStrength = 0.2;
+    float ambientStrength = ambientStg;
     vec3 ambient = ambientStrength * lightColor;
 
     //diffuse
@@ -30,7 +32,7 @@ void main()
     float specularStrength = 0.5;
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 2); //The 32 is the shininess of the material.
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess); //The 32 is the shininess of the material.
     vec3 specular = specularStrength * spec * lightColor;
 
     //At last we add all the light components together and multiply with the color of the object. Then we set the color

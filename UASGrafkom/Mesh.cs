@@ -33,6 +33,8 @@ namespace UASGrafkom
         Matrix4 view;
         Matrix4 projection;
         int counter = 0;
+        float ambientStrength=.2f;
+        float shininess = 32;
 
         //menambahkan hirarki kedalam parent
         public List<Mesh> child = new List<Mesh>();
@@ -82,6 +84,14 @@ namespace UASGrafkom
         public void setColor(Vector3 colors)
         {
             _color = colors;
+        }
+        public void setAmbientStg(float strenght)
+        {
+            ambientStrength = strenght;
+        }
+        public void setShininess(float shine)
+        {
+            shininess = shine;
         }
         public void setupObject(float Sizex, float Sizey, string abc)
         {
@@ -138,6 +148,9 @@ namespace UASGrafkom
             _shader.SetVector3("lightColor", _lightColor);
             _shader.SetVector3("lightPos", _lightPos);
             _shader.SetVector3("viewPos", _camera.Position);
+
+            _shader.SetFloat("ambientStg", ambientStrength);
+            _shader.SetFloat("shininess", shininess);
 
 
             GL.DrawArrays(PrimitiveType.Triangles, 0, realVertices.Count / 2);
