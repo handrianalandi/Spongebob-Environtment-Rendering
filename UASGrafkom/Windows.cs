@@ -42,6 +42,7 @@ namespace UASGrafkom
         Mesh bungahijau = new Mesh();
         Mesh bungakuning = new Mesh();
         Mesh bungapink = new Mesh();
+        Mesh depanrumahspong = new Mesh();
 
 
 
@@ -238,11 +239,21 @@ namespace UASGrafkom
             bungapink.translate(.545f, .255f, .03f);
             bungapink.scale(.45f);
 
+            depanrumahspong.LoadObjFile("../../../Assets/depanrumahspong.obj");
+            depanrumahspong.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            depanrumahspong.setColor(new Vector3((float)114 / 255, (float)160 / 255, (float)35 / 255));
+            depanrumahspong.setAmbientStg(.5f);
+            depanrumahspong.setShininess(1);
+            depanrumahspong.setSpecularStg(.2f);
+            depanrumahspong.translate(25.5f, 19.25f, -10.0f);
+            depanrumahspong.scale(.01f);
+
             rumahspongbase.child.Add(kacajendelapinturumahspong);
             rumahspongbase.child.Add(pipabiru);
             rumahspongbase.child.Add(bungahijau);
             rumahspongbase.child.Add(bungakuning);
             rumahspongbase.child.Add(bungapink);
+            rumahspongbase.child.Add(depanrumahspong);
 
 
         }
