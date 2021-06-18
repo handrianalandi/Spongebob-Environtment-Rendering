@@ -48,6 +48,8 @@ namespace UASGrafkom
 
         //rumah patrick
         Mesh rumahpatrick = new Mesh();
+        Mesh rumahpatrickbawah = new Mesh();
+        Mesh rumahpatrickatas = new Mesh();
 
         //squidward
         Mesh squidwardmain = new Mesh();
@@ -266,10 +268,29 @@ namespace UASGrafkom
             rumahpatrick.setAmbientStg(.5f);
             rumahpatrick.setShininess(1);
             rumahpatrick.setSpecularStg(.4f);
-            rumahpatrick.translate(-25.5f, 11.0f, 1.0f);
+            rumahpatrick.translate(-25.5f, 10.5f, 1.0f);
             rumahpatrick.scale(.013f);
 
+            rumahpatrickbawah.LoadObjFile("../../../Assets/rumahpatrickbawah.obj");
+            rumahpatrickbawah.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahpatrickbawah.setColor(new Vector3((float)208 / 255, (float)210 / 255, (float)170 / 255));
+            rumahpatrickbawah.setAmbientStg(.5f);
+            rumahpatrickbawah.setShininess(1);
+            rumahpatrickbawah.setSpecularStg(.4f);
+            rumahpatrickbawah.translate(-25.5f, 10.5f, 1.0f);
+            rumahpatrickbawah.scale(.013f);
 
+            rumahpatrickatas.LoadObjFile("../../../Assets/rumahpatrickatas.obj");
+            rumahpatrickatas.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahpatrickatas.setColor(new Vector3((float)185 / 255, (float)143 / 255, (float)0 / 255));
+            rumahpatrickatas.setAmbientStg(.5f);
+            rumahpatrickatas.setShininess(1);
+            rumahpatrickatas.setSpecularStg(.4f);
+            rumahpatrickatas.translate(-25.5f, 10.5f, 1.0f);
+            rumahpatrickatas.scale(.013f);
+
+            rumahpatrick.child.Add(rumahpatrickbawah);
+            rumahpatrick.child.Add(rumahpatrickatas);
         }
 
         void createEnvironment()
@@ -292,7 +313,7 @@ namespace UASGrafkom
             jalan.setColor(new Vector3((float)104 / 255, (float)122 / 255, (float)130 / 255));
             jalan.setAmbientStg(.6f);
             jalan.setShininess(4);
-            jalan.translate(0, .3f, 1f);
+            jalan.translate(0, .29f, 1f);
             jalan.scale(.3f);
         }
         void createSquidward()
