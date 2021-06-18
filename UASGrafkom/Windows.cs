@@ -67,6 +67,16 @@ namespace UASGrafkom
         Mesh patrickmata = new Mesh();
         Mesh patrickretina = new Mesh();
 
+        //Police Car
+        Mesh policecarBody1 = new Mesh();
+        Mesh policecarBody2 = new Mesh();
+        Mesh policecarBan = new Mesh();
+        Mesh policecarSiren = new Mesh();
+        Mesh policecarKaca1 = new Mesh();
+        Mesh policecarKaca2 = new Mesh();
+        Mesh policecarMesin = new Mesh();
+        Mesh policecarKincir = new Mesh();
+
 
 
         private Camera _camera;
@@ -84,6 +94,10 @@ namespace UASGrafkom
         //animasi patrick
         int counter1 = 0;
         bool atas = true;
+
+        //animasi police
+        int counter3 = 0;
+        bool depan3 = true;
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -457,6 +471,85 @@ namespace UASGrafkom
 
             patrickmain.scale(.5f);
         }
+
+        void createPoliceCar()
+        {
+
+            policecarBody1.LoadObjFile("../../../Assets/policecarBody1.obj");
+            policecarBody1.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarBody1.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)255 / 255));
+            policecarBody1.setAmbientStg(.35f);
+            policecarBody1.setShininess(1);
+            policecarBody1.setSpecularStg(.1f);
+
+            policecarBody2.LoadObjFile("../../../Assets/policecarBody2.obj");
+            policecarBody2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarBody2.setColor(new Vector3((float)143 / 255, (float)208 / 255, (float)255 / 255));
+            policecarBody2.setAmbientStg(.35f);
+            policecarBody2.setShininess(1);
+            policecarBody2.setSpecularStg(.1f);
+
+            policecarBan.LoadObjFile("../../../Assets/policecarBan.obj");
+            policecarBan.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarBan.setColor(new Vector3((float)25 / 255, (float)25 / 255, (float)25 / 255));
+            policecarBan.setAmbientStg(.35f);
+            policecarBan.setShininess(1);
+            policecarBan.setSpecularStg(.1f);
+
+            policecarSiren.LoadObjFile("../../../Assets/policecarSiren.obj");
+            policecarSiren.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarSiren.setColor(new Vector3((float)227 / 255, (float)30 / 255, (float)50 / 255));
+            policecarSiren.setAmbientStg(.35f);
+            policecarSiren.setShininess(1);
+            policecarSiren.setSpecularStg(.1f);
+
+            policecarKaca1.LoadObjFile("../../../Assets/policecarKaca1.obj");
+            policecarKaca1.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarKaca1.setColor(new Vector3((float)225 / 255, (float)225 / 255, (float)225 / 255));
+            policecarKaca1.setAmbientStg(.35f);
+            policecarKaca1.setShininess(1);
+            policecarKaca1.setSpecularStg(.1f);
+
+            policecarKaca2.LoadObjFile("../../../Assets/policecarKaca2.obj");
+            policecarKaca2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarKaca2.setColor(new Vector3((float)123 / 255, (float)188 / 255, (float)235 / 255));
+            policecarKaca2.setAmbientStg(.35f);
+            policecarKaca2.setShininess(128);
+            policecarKaca2.setSpecularStg(.1f);
+
+            policecarMesin.LoadObjFile("../../../Assets/policecarMesin.obj");
+            policecarMesin.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarMesin.setColor(new Vector3((float)75 / 255, (float)75 / 255, (float)75 / 255));
+            policecarMesin.setAmbientStg(.35f);
+            policecarMesin.setShininess(1);
+            policecarMesin.setSpecularStg(.1f);
+
+            policecarKincir.LoadObjFile("../../../Assets/policecarKincir.obj");
+            policecarKincir.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            policecarKincir.setColor(new Vector3((float)25 / 255, (float)25 / 255, (float)25 / 255));
+            policecarKincir.setAmbientStg(.35f);
+            policecarKincir.setShininess(1);
+            policecarKincir.setSpecularStg(.1f);
+            //edit
+            //policecarKincir.rotate(0, 90);
+            policecarKincir.translate(0, -.02f, .21f);
+
+
+            policecarBody1.child.Add(policecarBan);
+            policecarBody1.child.Add(policecarBody2);
+            policecarBody1.child.Add(policecarSiren);
+            policecarBody1.child.Add(policecarKaca1);
+            policecarBody1.child.Add(policecarKaca2);
+            policecarBody1.child.Add(policecarMesin);
+            policecarBody1.child.Add(policecarKincir);
+
+            policecarBody1.translate(-.55f, .265f, .25f);
+            policecarBody1.rotateall(0, 90f);
+            policecarBody1.scale(.5f);
+
+
+
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -474,6 +567,9 @@ namespace UASGrafkom
             //patrick
             createRumahPatrick();
             createPatrick();
+
+            //policecar
+            createPoliceCar();
 
 
 
@@ -498,6 +594,7 @@ namespace UASGrafkom
             {
                 animateSquidward();
                 animatePatrick();
+                animatePoliceCar();
             }
 
             
@@ -517,6 +614,10 @@ namespace UASGrafkom
                 //characters
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 patrickmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+                //police car
+                //policecar
+                policecarBody1.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
 
 
@@ -852,6 +953,20 @@ namespace UASGrafkom
                 counter1++;
             }
         }
+        void animatePoliceCar()
+        {
+            if (counter3 == 10)
+            {
+                policecarBody1.rotateall(0, -90f);
+                policecarKincir.rotate(0, 0, 2f);
+                policecarBody1.rotateall(0, 90f);
 
+                counter3 = 0;
+            }
+            else
+            {
+                counter3++;
+            }
+        }
     }
 }
