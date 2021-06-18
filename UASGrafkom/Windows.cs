@@ -60,6 +60,13 @@ namespace UASGrafkom
         Mesh squidwardkepala = new Mesh();
         Mesh squidwardleher = new Mesh();
 
+        //patrick
+        Mesh patrickmain = new Mesh();
+        Mesh patricktangan = new Mesh();
+        Mesh patrickcelana = new Mesh();
+        Mesh patrickmata = new Mesh();
+        Mesh patrickretina = new Mesh();
+
 
 
         private Camera _camera;
@@ -73,6 +80,10 @@ namespace UASGrafkom
         //animasi squidward
         int counter = 0;
         bool kanan = true;
+
+        //animasi patrick
+        int counter1 = 0;
+        bool atas = true;
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -393,6 +404,67 @@ namespace UASGrafkom
             squidwardmain.child.Add(squidwardkepala);
             squidwardmain.child.Add(squidwardleher);
         }
+
+        void createPatrick()
+        {
+            patrickmain.LoadObjFile("../../../Assets/patrickmain.obj");
+            patrickmain.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            patrickmain.setColor(new Vector3((float)255 / 255, (float)128 / 255, (float)139 / 255));
+            patrickmain.setAmbientStg(.5f);
+            patrickmain.setShininess(1);
+            patrickmain.setSpecularStg(.01f);
+            
+
+            patricktangan.LoadObjFile("../../../Assets/patricktangan.obj");
+            patricktangan.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            patricktangan.setColor(new Vector3((float)255 / 255, (float)128 / 255, (float)139 / 255));
+            patricktangan.setAmbientStg(.5f);
+            patricktangan.setShininess(1);
+            patricktangan.setSpecularStg(.01f);
+            //patricktangan.translate(-.045f, .5f, -.045f);
+            //patricktangan.scale(.5f);
+
+            patrickcelana.LoadObjFile("../../../Assets/patrickcelana.obj");
+            patrickcelana.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            patrickcelana.setColor(new Vector3((float)175 / 255, (float)223 / 255, (float)114 / 255));
+            patrickcelana.setAmbientStg(.5f);
+            patrickcelana.setShininess(1);
+            patrickcelana.setSpecularStg(.01f);
+            //patrickcelana.translate(-.05f, .5f, -.045f);
+            //patrickcelana.scale(.5f);
+
+            patrickmata.LoadObjFile("../../../Assets/patrickmata.obj");
+            patrickmata.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            patrickmata.setColor(new Vector3((float)235 / 255, (float)235 / 255, (float)235 / 255));
+            patrickmata.setAmbientStg(.5f);
+            patrickmata.setShininess(1);
+            patrickmata.setSpecularStg(.01f);
+            //patrickmata.translate(-.05f, .5f, -.045f);
+            //patrickmata.scale(.5f);
+
+            patrickretina.LoadObjFile("../../../Assets/patrickretina.obj");
+            patrickretina.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            patrickretina.setColor(new Vector3((float)15 / 255, (float)15 / 255, (float)15 / 255));
+            patrickretina.setAmbientStg(.5f);
+            patrickretina.setShininess(1);
+            patrickretina.setSpecularStg(.01f);
+            //patrickretina.translate(-.05f, .5f, -.045f);
+            //patrickretina.scale(.5f);
+
+
+            patrickmain.child.Add(patricktangan);
+            patrickmain.child.Add(patrickcelana);
+            patrickmain.child.Add(patrickmata);
+            patrickmain.child.Add(patrickretina);
+
+            patrickmain.translate(-.475f, .25f, .4f);
+
+            patrickmain.backtozero();
+            patrickmain.rotateall(0, 60, 0);
+            patrickmain.backtonormal();
+
+            patrickmain.scale(.5f);
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -400,17 +472,17 @@ namespace UASGrafkom
 
             createEnvironment();
 
-            //rumah squidward
+            //squidward
             createRumahSquidward();
+            createSquidward();
 
             //rumah spongebob
             createRumahSpongebob();
 
-            //rumah patrick
+            //patrick
             createRumahPatrick();
+            createPatrick();
 
-            //squidward
-            createSquidward();
 
 
 
@@ -430,9 +502,10 @@ namespace UASGrafkom
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 
-            //aniamtion
+            //animation
             {
                 animateSquidward();
+                animatePatrick();
             }
 
             
@@ -449,8 +522,11 @@ namespace UASGrafkom
                 rumahspongbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 rumahpatrick.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
             
-                //squidward
+                //characters
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                patrickmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+
 
             }
 
@@ -696,7 +772,7 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyPressed(Keys.C))
             {
-                _camera.Position = rumahsquidwardmodif.getRealPos();
+                _camera.Position = patrickretina.getRealPos();
             }
 
             //rotasi pakai mouse
@@ -753,5 +829,37 @@ namespace UASGrafkom
                 counter++;
             }
         }
+        void animatePatrick()
+        {
+            if (counter1 == 20)
+            {
+                if (atas)
+                {
+                    patricktangan.backtozero();
+                    patricktangan.rotateall(.25f);
+                    patricktangan.backtonormal();
+                }
+                else
+                {
+                    patricktangan.backtozero();
+                    patricktangan.rotateall(-.25f);
+                    patricktangan.backtonormal();
+                }
+                if (patricktangan.rotation.X >= 7.5f)
+                {
+                    atas = false;
+                }
+                else if (patricktangan.rotation.X <= -7.5f)
+                {
+                    atas = true;
+                }
+                counter1 = 0;
+            }
+            else
+            {
+                counter1++;
+            }
+        }
+
     }
 }
