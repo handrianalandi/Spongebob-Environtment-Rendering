@@ -67,6 +67,14 @@ namespace UASGrafkom
         Mesh patrickmata = new Mesh();
         Mesh patrickretina = new Mesh();
 
+        //Spongebob
+        Mesh spongebobmain = new Mesh();
+        Mesh spongebobouter = new Mesh();
+        Mesh spongebobcelana = new Mesh();
+        Mesh spongebobdasi = new Mesh();
+        Mesh spongebobouter2 = new Mesh();
+        Mesh spongebobouter3 = new Mesh();
+
         //Police Car
         Mesh policecarBody1 = new Mesh();
         Mesh policecarBody2 = new Mesh();
@@ -472,6 +480,60 @@ namespace UASGrafkom
             patrickmain.scale(.5f);
         }
 
+        void createSpongebob()
+        {
+            spongebobmain.LoadObjFile("../../../Assets/spongebobmain.obj");
+            spongebobmain.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobmain.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)0 / 255));
+            spongebobmain.setAmbientStg(.5f);
+            spongebobmain.setShininess(1);
+            spongebobmain.setSpecularStg(.01f);
+
+            spongebobouter.LoadObjFile("../../../Assets/spongebobouter.obj");
+            spongebobouter.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobouter.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)255 / 255));
+            spongebobouter.setAmbientStg(.5f);
+            spongebobouter.setShininess(1);
+            spongebobouter.setSpecularStg(.01f);
+
+            spongebobcelana.LoadObjFile("../../../Assets/spongebobcelana.obj");
+            spongebobcelana.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobcelana.setColor(new Vector3((float)105 / 255, (float)51 / 255, (float)0 / 255));
+            spongebobcelana.setAmbientStg(.5f);
+            spongebobcelana.setShininess(1);
+            spongebobcelana.setSpecularStg(.01f);
+
+            spongebobdasi.LoadObjFile("../../../Assets/spongebobdasi.obj");
+            spongebobdasi.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobdasi.setColor(new Vector3((float)105 / 255, (float)0 / 255, (float)0 / 255));
+            spongebobdasi.setAmbientStg(.5f);
+            spongebobdasi.setShininess(1);
+            spongebobdasi.setSpecularStg(.01f);
+
+            spongebobouter2.LoadObjFile("../../../Assets/spongebobouter2.obj");
+            spongebobouter2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobouter2.setColor(new Vector3((float)0 / 255, (float)0 / 255, (float)0 / 255));
+            spongebobouter2.setAmbientStg(.5f);
+            spongebobouter2.setShininess(1);
+            spongebobouter2.setSpecularStg(.01f);
+
+            spongebobouter3.LoadObjFile("../../../Assets/spongebobouter3.obj");
+            spongebobouter3.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            spongebobouter3.setColor(new Vector3((float)0 / 255, (float)204 / 255, (float)204 / 255));
+            spongebobouter3.setAmbientStg(.5f);
+            spongebobouter3.setShininess(1);
+            spongebobouter3.setSpecularStg(.01f);
+
+            spongebobmain.child.Add(spongebobouter);
+            spongebobmain.child.Add(spongebobcelana);
+            spongebobmain.child.Add(spongebobdasi);
+            spongebobmain.child.Add(spongebobouter2);
+            spongebobmain.child.Add(spongebobouter3);
+
+            spongebobmain.translate(0.7f, .23f, 0.3f);
+            spongebobmain.scale(0.5f);
+        }
+
         void createPoliceCar()
         {
 
@@ -567,6 +629,7 @@ namespace UASGrafkom
             //patrick
             createRumahPatrick();
             createPatrick();
+            createSpongebob();
 
             //policecar
             createPoliceCar();
@@ -614,6 +677,7 @@ namespace UASGrafkom
                 //characters
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 patrickmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                spongebobmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
                 //police car
                 //policecar
