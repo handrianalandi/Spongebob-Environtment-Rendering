@@ -33,9 +33,12 @@ namespace UASGrafkom
         Matrix4 view;
         Matrix4 projection;
         int counter = 0;
-        float ambientStrength=.2f;
+        float ambientStrength = .2f;
         float shininess = 32;
         float specularStrength = .5f;
+
+        //squidwardupdate
+        public Vector3 rotation;
 
         //menambahkan hirarki kedalam parent
         public List<Mesh> child = new List<Mesh>();
@@ -44,6 +47,11 @@ namespace UASGrafkom
             position = new Vector3(0, 0, 0);
             scalefloat = 1;
             degree = 0;
+
+            //newsquid
+            rotation.X = 0;
+            rotation.Y = 0;
+            rotation.Z = 0;
         }
         public void move(float x, float y, float z)
         {
@@ -227,6 +235,12 @@ namespace UASGrafkom
             transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(z));
             degree += y;
             degree %= 360;
+
+            //newsquid
+            rotation.X += x;
+            rotation.Y += y;
+            rotation.Z += z;
+
             foreach (var meshobj in child)
             {
                 meshobj.rotateall(x, y, z);
