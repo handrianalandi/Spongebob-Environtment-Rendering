@@ -867,7 +867,7 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyPressed(Keys.Left))
             {
-                tanah.move(.01f, 0, 0);
+                Console.WriteLine(policecarBody1.getRealPos());
             }
             if (KeyboardState.IsKeyPressed(Keys.Right))
             {
@@ -1023,7 +1023,13 @@ namespace UASGrafkom
             {
                 policecarBody1.rotateall(0, -90f);
                 policecarKincir.rotate(0, 0, 2f);
+                policecarBody1.move(0, 0, -.002f);
+                if (policecarBody1.getRealPos().Z <= -.39f)
+                {
+                    policecarBody1.move(0, 0, 1.5f);
+                }
                 policecarBody1.rotateall(0, 90f);
+
 
                 counter3 = 0;
             }
