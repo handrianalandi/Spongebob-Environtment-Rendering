@@ -421,8 +421,6 @@ namespace UASGrafkom
             patricktangan.setAmbientStg(.5f);
             patricktangan.setShininess(1);
             patricktangan.setSpecularStg(.01f);
-            //patricktangan.translate(-.045f, .5f, -.045f);
-            //patricktangan.scale(.5f);
 
             patrickcelana.LoadObjFile("../../../Assets/patrickcelana.obj");
             patrickcelana.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -430,8 +428,6 @@ namespace UASGrafkom
             patrickcelana.setAmbientStg(.5f);
             patrickcelana.setShininess(1);
             patrickcelana.setSpecularStg(.01f);
-            //patrickcelana.translate(-.05f, .5f, -.045f);
-            //patrickcelana.scale(.5f);
 
             patrickmata.LoadObjFile("../../../Assets/patrickmata.obj");
             patrickmata.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -439,8 +435,6 @@ namespace UASGrafkom
             patrickmata.setAmbientStg(.5f);
             patrickmata.setShininess(1);
             patrickmata.setSpecularStg(.01f);
-            //patrickmata.translate(-.05f, .5f, -.045f);
-            //patrickmata.scale(.5f);
 
             patrickretina.LoadObjFile("../../../Assets/patrickretina.obj");
             patrickretina.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -448,8 +442,6 @@ namespace UASGrafkom
             patrickretina.setAmbientStg(.5f);
             patrickretina.setShininess(1);
             patrickretina.setSpecularStg(.01f);
-            //patrickretina.translate(-.05f, .5f, -.045f);
-            //patrickretina.scale(.5f);
 
 
             patrickmain.child.Add(patricktangan);
