@@ -403,23 +403,20 @@ namespace UASGrafkom
                 animateSquidward();
             }
 
-            mataharisun.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-
-            tanah.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-            jalan.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+            
 
             {
-                //rumah squidward
+
+                //environment
+                mataharisun.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                tanah.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                jalan.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+                //rumah
                 rumahsquidwardbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-
-                //rumah spongebob
                 rumahspongbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-
-                //rumah patrick
                 rumahpatrick.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-            }
-
-            {
+            
                 //squidward
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
