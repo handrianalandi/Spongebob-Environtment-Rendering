@@ -20,7 +20,6 @@ namespace UASGrafkom
         private Vector3 _sunPos = new Vector3(0f, 5f, 5f);
 
 
-
         Mesh tanah = new Mesh();
         Mesh jalan = new Mesh();
         Mesh mataharisun = new Mesh();
@@ -101,7 +100,10 @@ namespace UASGrafkom
         Mesh trampolinetengahbesar = new Mesh();
         Mesh trampolinetengahkecil = new Mesh();
 
-
+        //asesoris batu
+        Mesh rocks = new Mesh();
+        Mesh rocks2 = new Mesh();
+        Mesh rocks3 = new Mesh();
 
         private Camera _camera;
         private Vector3 _objectPos;
@@ -126,6 +128,7 @@ namespace UASGrafkom
         int counter4 = 0;
         bool atas4 = true;
         bool puter = true;
+
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -613,16 +616,16 @@ namespace UASGrafkom
             garymain.child.Add(garyretina);
             garymain.child.Add(garypupil);
 
-            garymain.translate(4.15f, 1.7f, 0.9f);
+            garymain.translate(4.15f, 1.7f, 0.1f);
 
             garymain.backtozero();
-            garymain.rotateall(0, -90, 0);
+            garymain.rotateall(0, 90, 0);
             garymain.backtonormal();
 
             garymain.scale(0.06f);
 
             garymain.backtozero();
-            garymain.rotateall(0, 180f);
+            garymain.rotateall(0, 180);
             garymain.backtonormal();
         }
         protected void createPoliceCar()
@@ -749,6 +752,35 @@ namespace UASGrafkom
             trampolinegagang.translate(.25f, .2f, .1f);
             trampolinegagang.scale(.5f);
         }
+        void createRocks()
+        {
+            rocks.LoadObjFile("../../../Assets/rocks.obj");
+            rocks.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rocks.setColor(new Vector3((float)96 / 255, (float)96 / 255, (float)96 / 255));
+            rocks.setAmbientStg(.35f);
+            rocks.setShininess(1);
+            rocks.setSpecularStg(.1f);
+            rocks.translate(0.4f, .09f, 0.2f);
+
+            rocks2.LoadObjFile("../../../Assets/rocks2.obj");
+            rocks2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rocks2.setColor(new Vector3((float)96 / 255, (float)96 / 255, (float)96 / 255));
+            rocks2.setAmbientStg(.35f);
+            rocks2.setShininess(1);
+            rocks2.setSpecularStg(.1f);
+            rocks2.translate(-0.3f, .075f, 0.45f);
+
+            rocks3.LoadObjFile("../../../Assets/rocks2.obj");
+            rocks3.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rocks3.setColor(new Vector3((float)96 / 255, (float)96 / 255, (float)96 / 255));
+            rocks3.setAmbientStg(.35f);
+            rocks3.setShininess(1);
+            rocks3.setSpecularStg(.1f);
+            rocks3.translate(0.4f, .075f, 0.45f);
+
+            rocks.child.Add(rocks2);
+            rocks.child.Add(rocks3);
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -775,7 +807,8 @@ namespace UASGrafkom
             //trampoline
             createTrampoline();
 
-
+            //rocks
+            createRocks();
 
 
             // Camera
@@ -828,8 +861,8 @@ namespace UASGrafkom
                 //trampoline
                 trampolinegagang.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
-
-
+                //rocks
+                rocks.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
             }
 
 
