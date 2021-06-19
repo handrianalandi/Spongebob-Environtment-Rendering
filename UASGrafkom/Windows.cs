@@ -43,6 +43,8 @@ namespace UASGrafkom
         Mesh bungakuning = new Mesh();
         Mesh bungapink = new Mesh();
         Mesh depanrumahspong = new Mesh();
+        Mesh pintuspongebob1 = new Mesh();
+        Mesh pintuspongebob2 = new Mesh();
 
 
 
@@ -253,7 +255,7 @@ namespace UASGrafkom
             bungahijau.setAmbientStg(.3f);
             bungahijau.setShininess(1);
             bungahijau.setSpecularStg(.4f);
-            bungahijau.translate(.545f, .255f, .03f);
+            bungahijau.translate(.545f, .21f, .03f);
             bungahijau.scale(.45f);
 
             bungakuning.LoadObjFile("../../../Assets/bungakuning.obj");
@@ -262,7 +264,7 @@ namespace UASGrafkom
             bungakuning.setAmbientStg(.3f);
             bungakuning.setShininess(1);
             bungakuning.setSpecularStg(.4f);
-            bungakuning.translate(.545f, .255f, .03f);
+            bungakuning.translate(.545f, .21f, .03f);
             bungakuning.scale(.45f);
 
             bungapink.LoadObjFile("../../../Assets/bungapink.obj");
@@ -271,7 +273,7 @@ namespace UASGrafkom
             bungapink.setAmbientStg(.3f);
             bungapink.setShininess(1);
             bungapink.setSpecularStg(.4f);
-            bungapink.translate(.545f, .255f, .03f);
+            bungapink.translate(.545f, .21f, .03f);
             bungapink.scale(.45f);
 
             depanrumahspong.LoadObjFile("../../../Assets/depanrumahspong.obj");
@@ -280,8 +282,26 @@ namespace UASGrafkom
             depanrumahspong.setAmbientStg(.5f);
             depanrumahspong.setShininess(1);
             depanrumahspong.setSpecularStg(.2f);
-            depanrumahspong.translate(25.5f, 19.25f, -10.0f);
+            depanrumahspong.translate(25.5f, 17f, -10.0f);
             depanrumahspong.scale(.01f);
+
+            pintuspongebob1.LoadObjFile("../../../Assets/pintuspongebob1.obj");
+            pintuspongebob1.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            pintuspongebob1.setColor(new Vector3((float)43 / 255, (float)109 / 255, (float)146 / 255));
+            pintuspongebob1.setAmbientStg(.5f);
+            pintuspongebob1.setShininess(1);
+            pintuspongebob1.setSpecularStg(.2f);
+            pintuspongebob1.translate(19.5f, 15.0f, -8.0f);
+            pintuspongebob1.scale(.013f);
+
+            pintuspongebob2.LoadObjFile("../../../Assets/pintuspongebob2.obj");
+            pintuspongebob2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            pintuspongebob2.setColor(new Vector3((float)3 / 255, (float)69 / 255, (float)106 / 255));
+            pintuspongebob2.setAmbientStg(.5f);
+            pintuspongebob2.setShininess(1);
+            pintuspongebob2.setSpecularStg(.2f);
+            pintuspongebob2.translate(19.5f, 15.0f, -8.0f);
+            pintuspongebob2.scale(.013f);
 
             rumahspongbase.child.Add(kacajendelapinturumahspong);
             rumahspongbase.child.Add(pipabiru);
@@ -289,6 +309,10 @@ namespace UASGrafkom
             rumahspongbase.child.Add(bungakuning);
             rumahspongbase.child.Add(bungapink);
             rumahspongbase.child.Add(depanrumahspong);
+            rumahspongbase.child.Add(pintuspongebob1);
+            rumahspongbase.child.Add(pintuspongebob2);
+
+            rumahspongbase.translate(0, .02f, 0);
 
 
         }
