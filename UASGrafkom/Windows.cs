@@ -77,6 +77,13 @@ namespace UASGrafkom
         Mesh spongebobouter2 = new Mesh();
         Mesh spongebobouter3 = new Mesh();
 
+        //Gary
+        Mesh garymain = new Mesh();
+        Mesh garybawah = new Mesh();
+        Mesh garycangkang = new Mesh();
+        Mesh garyretina = new Mesh();
+        Mesh garypupil = new Mesh();
+
         //Police Car
         Mesh policecarBody1 = new Mesh();
         Mesh policecarBody2 = new Mesh();
@@ -558,6 +565,52 @@ namespace UASGrafkom
             spongebobmain.scale(0.5f);
         }
 
+        void createGary()
+        {
+            garymain.LoadObjFile("../../../Assets/garymain.obj");
+            garymain.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            garymain.setColor(new Vector3((float)51 / 255, (float)255 / 255, (float)255 / 255));
+            garymain.setAmbientStg(.5f);
+            garymain.setShininess(1);
+            garymain.setSpecularStg(.01f);
+
+            garybawah.LoadObjFile("../../../Assets/garybawah.obj");
+            garybawah.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            garybawah.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)153 / 255));
+            garybawah.setAmbientStg(.5f);
+            garybawah.setShininess(1);
+            garybawah.setSpecularStg(.01f);
+
+            garycangkang.LoadObjFile("../../../Assets/garycangkang.obj");
+            garycangkang.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            garycangkang.setColor(new Vector3((float)255 / 255, (float)204 / 255, (float)204 / 255));
+            garycangkang.setAmbientStg(.5f);
+            garycangkang.setShininess(1);
+            garycangkang.setSpecularStg(.01f);
+
+            garyretina.LoadObjFile("../../../Assets/garyretina.obj");
+            garyretina.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            garyretina.setColor(new Vector3((float)255 / 255, (float)51 / 255, (float)51 / 255));
+            garyretina.setAmbientStg(.5f);
+            garyretina.setShininess(1);
+            garyretina.setSpecularStg(.01f);
+
+            garypupil.LoadObjFile("../../../Assets/garypupil.obj");
+            garypupil.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            garypupil.setColor(new Vector3((float)0 / 255, (float)0 / 255, (float)0 / 255));
+            garypupil.setAmbientStg(.5f);
+            garypupil.setShininess(1);
+            garypupil.setSpecularStg(.01f);
+
+            garymain.child.Add(garybawah);
+            garymain.child.Add(garycangkang);
+            garymain.child.Add(garyretina);
+            garymain.child.Add(garypupil);
+
+            garymain.translate(4.0f, 1.73f, 0.9f);
+            garymain.scale(0.06f);
+        }
+
         void createPoliceCar()
         {
 
@@ -649,11 +702,12 @@ namespace UASGrafkom
 
             //rumah spongebob
             createRumahSpongebob();
+            createSpongebob();
+            createGary();
 
             //patrick
             createRumahPatrick();
             createPatrick();
-            createSpongebob();
 
             //policecar
             createPoliceCar();
@@ -702,6 +756,7 @@ namespace UASGrafkom
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 patrickmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 spongebobmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                garymain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
                 //police car
                 //policecar
