@@ -17,7 +17,7 @@ namespace UASGrafkom
         // Camera
 
 
-        private Vector3 _sunPos = new Vector3(0f, 5f, 5f);
+        private Vector3 _sunPos = new Vector3(0f, 3f, 3f);
 
 
         Mesh tanah = new Mesh();
@@ -44,6 +44,8 @@ namespace UASGrafkom
         Mesh depanrumahspong = new Mesh();
         Mesh pintuspongebob1 = new Mesh();
         Mesh pintuspongebob2 = new Mesh();
+        Mesh rumahspongatas = new Mesh();
+
 
 
 
@@ -129,6 +131,11 @@ namespace UASGrafkom
         bool atas4 = true;
         bool puter = true;
 
+        //camera
+        bool usingcamera = false;
+        Mesh cameraFocus;
+        const float _rotationSpeed = .02f;
+
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -152,7 +159,7 @@ namespace UASGrafkom
             );
             return secretFormulaMatrix;
         }
-        void createRumahSquidward()
+        protected void createRumahSquidward()
         {
             rumahsquidwardbase.LoadObjFile("../../../Assets/rsquidwardbase.obj");
             rumahsquidwardbase.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -239,7 +246,6 @@ namespace UASGrafkom
 
 
         }
-
         protected void createRumahSpongebob()
         {
             rumahspongbase.LoadObjFile("../../../Assets/rumahspong.obj");
@@ -324,6 +330,15 @@ namespace UASGrafkom
             pintuspongebob2.translate(19.5f, 15.0f, -8.0f);
             pintuspongebob2.scale(.013f);
 
+            rumahspongatas.LoadObjFile("../../../Assets/rumahspongatas.obj");
+            rumahspongatas.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            rumahspongatas.setColor(new Vector3((float)80 / 255, (float)211 / 255, (float)0 / 255));
+            rumahspongatas.setAmbientStg(.5f);
+            rumahspongatas.setShininess(1);
+            rumahspongatas.setSpecularStg(.2f);
+            rumahspongatas.translate(19.5f, 15.0f, -8.0f);
+            rumahspongatas.scale(.013f);
+
             rumahspongbase.child.Add(kacajendelapinturumahspong);
             rumahspongbase.child.Add(pipabiru);
             rumahspongbase.child.Add(bungahijau);
@@ -332,6 +347,7 @@ namespace UASGrafkom
             rumahspongbase.child.Add(depanrumahspong);
             rumahspongbase.child.Add(pintuspongebob1);
             rumahspongbase.child.Add(pintuspongebob2);
+            rumahspongbase.child.Add(rumahspongatas);
 
             rumahspongbase.translate(0, .02f, 0);
 
@@ -513,7 +529,7 @@ namespace UASGrafkom
             patrickmain.child.Add(patrickmata);
             patrickmain.child.Add(patrickretina);
 
-            patrickmain.translate(-.475f, .25f, .4f);
+            patrickmain.translate(-.475f, .25f, .3f);
 
             patrickmain.backtozero();
             patrickmain.rotateall(0, 60, 0);
@@ -752,7 +768,7 @@ namespace UASGrafkom
             trampolinegagang.translate(.25f, .2f, .1f);
             trampolinegagang.scale(.5f);
         }
-        void createRocks()
+        protected void createRocks()
         {
             rocks.LoadObjFile("../../../Assets/rocks.obj");
             rocks.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -815,8 +831,9 @@ namespace UASGrafkom
             var _cameraPosInit = new Vector3(0, 0, 0);
             _camera = new Camera(_cameraPosInit, Size.X / (float)Size.Y);
 
-            //_objectPos = posObject3;
-            _camera.Yaw -= 90f;
+            //_camera.Yaw -= 90f;
+            _camera.Position += new Vector3(0, .5f, 1f);
+            _camera.Pitch -= 45f;
 
             CursorGrabbed = true;
             base.OnLoad();
@@ -939,72 +956,115 @@ namespace UASGrafkom
             //naik (spasi)
             if (KeyboardState.IsKeyDown(Keys.Space))
             {
-                _camera.Position += _camera.Up * cameraSpeed * (float)args.Time;
+                _camera.Position += new Vector3(0,cameraSpeed * (float)args.Time*.5f,0);
             }
             //turun (ctrl)
             if (KeyboardState.IsKeyDown(Keys.LeftControl))
             {
-                _camera.Position -= _camera.Up * cameraSpeed * (float)args.Time;
+                _camera.Position -= new Vector3(0, cameraSpeed * (float)args.Time * .5f, 0);
             }
+            
 
-            const float _rotationSpeed = .02f;
-            // M (bawah -> rotasi sumbu x)
-            if (KeyboardState.IsKeyDown(Keys.M))
             {
-                _objectPos *= 2;
-                var axis = new Vector3(1, 0, 0);
-                _camera.Position -= _objectPos;
-                _camera.Pitch += _rotationSpeed;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
+                //all
+                if (KeyboardState.IsKeyPressed(Keys.F1))
+                {
+                    cameraFocus = tanah;
+                    usingcamera = true;
+                    _camera.Position = new Vector3(0);
+                    _objectPos = cameraFocus.getRealPos();
+                    _camera.Position += new Vector3(0, _objectPos.Y + .5f, 1f);
+                    _camera.Pitch = 0;
+                    _camera.Yaw = 0;
+                }
+                if (KeyboardState.IsKeyDown(Keys.F1))
+                {
+                    _objectPos = cameraFocus.getRealPos();
+                    //_camera.Position = new Vector3(0);
+                    var axis = new Vector3(0, 1, 0);
+                    _camera.Position -= _objectPos;
+                    _camera.Yaw -= _rotationSpeed;
+                    _camera.Position = Vector3.Transform(_camera.Position,
+                        generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
+                    _camera.Position += _objectPos;
 
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
+
+                    _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
+                }
+                if (KeyboardState.IsKeyReleased(Keys.F1))
+                {
+                    usingcamera = false;
+                    _camera.Yaw -= 90;
+                    _camera.Pitch -= 25;
+                }
             }
 
-            // K (atas  -> rotasi sumbu x)
-            if (KeyboardState.IsKeyDown(Keys.K))
+
             {
-                _objectPos *= 2;
-                var axis = new Vector3(1, 0, 0);
-                _camera.Position -= _objectPos;
-                _camera.Pitch -= _rotationSpeed;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, _rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
+                //spongebob
+                if (KeyboardState.IsKeyPressed(Keys.F2))
+                {
+                    cameraFocus = spongebobmain;
+                    usingcamera = true;
+                    _camera.Position = new Vector3(0);
+                    _objectPos = cameraFocus.getRealPos();
+                    _camera.Position += new Vector3(0, _objectPos.Y, .2f);
+                    _camera.Pitch = 0;
+                    _camera.Yaw = 0;
+                }
+                if (KeyboardState.IsKeyDown(Keys.F2))
+                {
+                    _objectPos = cameraFocus.getRealPos();
+                    var axis = new Vector3(0, 1, 0);
+                    _camera.Position -= _objectPos;
+                    _camera.Yaw -= _rotationSpeed;
+                    _camera.Position = Vector3.Transform(_camera.Position,
+                        generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
+                    _camera.Position += _objectPos;
 
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
+
+                    _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
+                }
+                if (KeyboardState.IsKeyReleased(Keys.F2))
+                {
+                    usingcamera = false;
+                    _camera.Yaw -= 50;
+                }
             }
-            // N (kiri  -> rotasi sumbu y)
-            if (KeyboardState.IsKeyDown(Keys.N))
+
             {
-                _objectPos *= 2;
-                var axis = new Vector3(0, 1, 0);
-                _camera.Position -= _objectPos;
-                _camera.Yaw += _rotationSpeed;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, _rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
+                //patrick
+                if (KeyboardState.IsKeyPressed(Keys.F3))
+                {
+                    cameraFocus = patrickmain;
+                    usingcamera = true;
+                    _camera.Position = new Vector3(0);
+                    _objectPos = cameraFocus.getRealPos();
+                    _camera.Position += new Vector3(0, _objectPos.Y + .05f, .2f);
+                    _camera.Pitch = 0;
+                    _camera.Yaw = 0;
+                }
+                if (KeyboardState.IsKeyDown(Keys.F3))
+                {
+                    _objectPos = cameraFocus.getRealPos();
+                    //_camera.Position = new Vector3(0);
+                    var axis = new Vector3(0, 1, 0);
+                    _camera.Position -= _objectPos;
+                    _camera.Yaw -= _rotationSpeed;
+                    _camera.Position = Vector3.Transform(_camera.Position,
+                        generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
+                    _camera.Position += _objectPos;
 
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
-            }
-            // , (kanan -> rotasi sumbu y)
-            if (KeyboardState.IsKeyDown(Keys.Comma))
-            {
-                _objectPos *= 2;
-                var axis = new Vector3(0, 1, 0);
-                _camera.Position -= _objectPos;
-                _camera.Yaw -= _rotationSpeed;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
 
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
+                    _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
+                }
+                if (KeyboardState.IsKeyReleased(Keys.F3))
+                {
+                    usingcamera = false;
+                    _camera.Yaw += -168;
+                }
             }
+
 
 
             // J (putar -> rotasi sumbu z)
@@ -1111,32 +1171,36 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyPressed(Keys.C))
             {
-                Console.WriteLine(_camera.Position.X + " " + _camera.Position.Y + " " + _camera.Position.Z);
+                _camera.Position = policecarBody1.rotation*policecarBody1.getRealPos();
             }
             if (KeyboardState.IsKeyPressed(Keys.Y))
             {
                 Console.WriteLine(spongebobmain.getRealPos().X + " " + spongebobmain.getRealPos().Y + " " + spongebobmain.getRealPos().Z);
             }
             //rotasi pakai mouse
-            if (!IsFocused)
+            if (!usingcamera)
             {
-                return;
-            }
-            if (_firstmove)
-            {
-                _lastMousePosition = new Vector2(MouseState.X, MouseState.Y);
-                _firstmove = false;
-            }
-            else
-            {
-                //calc selisih mouse pos
-                var deltaX = MouseState.X - _lastMousePosition.X;
-                var deltaY = MouseState.Y - _lastMousePosition.Y;
-                _lastMousePosition = new Vector2(MouseState.X, MouseState.Y);
+                if (!IsFocused)
+                {
+                    return;
+                }
+                if (_firstmove)
+                {
+                    _lastMousePosition = new Vector2(MouseState.X, MouseState.Y);
+                    _firstmove = false;
+                }
+                else
+                {
+                    //calc selisih mouse pos
+                    var deltaX = MouseState.X - _lastMousePosition.X;
+                    var deltaY = MouseState.Y - _lastMousePosition.Y;
+                    _lastMousePosition = new Vector2(MouseState.X, MouseState.Y);
 
-                _camera.Yaw += deltaX * sensitivity;
-                _camera.Pitch -= deltaY * sensitivity;
+                    _camera.Yaw += deltaX * sensitivity;
+                    _camera.Pitch -= deltaY * sensitivity;
+                }
             }
+            
 
             base.OnUpdateFrame(args);
         }
@@ -1207,7 +1271,7 @@ namespace UASGrafkom
             if (counter3 == 10)
             {
                 policecarBody1.rotateall(0, -90f);
-                policecarKincir.rotate(0, 0, 2f);
+                policecarKincir.rotate(0, 0, 5f);
                 policecarBody1.move(0, 0, -.002f);
                 if (policecarBody1.getRealPos().Z <= -.39f)
                 {
