@@ -334,7 +334,6 @@ namespace UASGrafkom
 
 
         }
-
         protected void createRumahPatrick()
         {
             rumahpatrick.LoadObjFile("../../../Assets/rumahpatrick.obj");
@@ -367,8 +366,7 @@ namespace UASGrafkom
             rumahpatrick.child.Add(rumahpatrickbawah);
             rumahpatrick.child.Add(rumahpatrickatas);
         }
-
-        void createEnvironment()
+        protected void createEnvironment()
         {
             mataharisun.LoadObjFile("../../../Assets/bantal.obj");
             mataharisun.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -391,7 +389,7 @@ namespace UASGrafkom
             jalan.translate(0, .29f, 1f);
             jalan.scale(.3f);
         }
-        void createSquidward()
+        protected void createSquidward()
         {
             squidwardmain.LoadObjFile("../../../Assets/squidwardmain1.obj");
             squidwardmain.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -468,8 +466,7 @@ namespace UASGrafkom
             squidwardmain.child.Add(squidwardkepala);
             squidwardmain.child.Add(squidwardleher);
         }
-
-        void createPatrick()
+        protected void createPatrick()
         {
             patrickmain.LoadObjFile("../../../Assets/patrickmain.obj");
             patrickmain.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -521,8 +518,7 @@ namespace UASGrafkom
 
             patrickmain.scale(.5f);
         }
-
-        void createSpongebob()
+        protected void createSpongebob()
         {
             spongebobmain.LoadObjFile("../../../Assets/spongebobmain.obj");
             spongebobmain.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -572,11 +568,10 @@ namespace UASGrafkom
             spongebobmain.child.Add(spongebobouter2);
             spongebobmain.child.Add(spongebobouter3);
 
-            spongebobmain.translate(0.7f, .23f, 0.3f);
+            spongebobmain.translate(.25f, .27f, .1f);
             spongebobmain.scale(0.5f);
         }
-
-        void createGary()
+        protected void createGary()
         {
             garymain.LoadObjFile("../../../Assets/garymain.obj");
             garymain.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -620,9 +615,12 @@ namespace UASGrafkom
 
             garymain.translate(4.0f, 1.73f, 0.9f);
             garymain.scale(0.06f);
-        }
 
-        void createPoliceCar()
+            garymain.backtozero();
+            garymain.rotateall(0, 180f);
+            garymain.backtonormal();
+        }
+        protected void createPoliceCar()
         {
 
             policecarBody1.LoadObjFile("../../../Assets/policecarBody1.obj");
@@ -700,6 +698,52 @@ namespace UASGrafkom
 
 
         }
+        protected void createTrampoline()
+        {
+
+            trampolinegagang.LoadObjFile("../../../Assets/trampolinegagang.obj");
+            trampolinegagang.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            trampolinegagang.setColor(new Vector3((float)214 / 255, (float)180 / 255, (float)96 / 255));
+            trampolinegagang.setAmbientStg(.35f);
+            trampolinegagang.setShininess(1);
+            trampolinegagang.setSpecularStg(.1f);
+
+            trampolinekaki1.LoadObjFile("../../../Assets/tampolinekaki1.obj");
+            trampolinekaki1.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            trampolinekaki1.setColor(new Vector3((float)214 / 255, (float)180 / 255, (float)96 / 255));
+            trampolinekaki1.setAmbientStg(.35f);
+            trampolinekaki1.setShininess(1);
+            trampolinekaki1.setSpecularStg(.1f);
+            
+            trampolinekaki2.LoadObjFile("../../../Assets/tampolinekaki2.obj");
+            trampolinekaki2.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            trampolinekaki2.setColor(new Vector3((float)35 / 255, (float)35 / 255, (float)35 / 255));
+            trampolinekaki2.setAmbientStg(.35f);
+            trampolinekaki2.setShininess(1);
+            trampolinekaki2.setSpecularStg(.1f);
+
+            trampolinetengahbesar.LoadObjFile("../../../Assets/tampolinetengahbesar.obj");
+            trampolinetengahbesar.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            trampolinetengahbesar.setColor(new Vector3((float)0 / 255, (float)61 / 255, (float)0 / 255));
+            trampolinetengahbesar.setAmbientStg(.35f);
+            trampolinetengahbesar.setShininess(1);
+            trampolinetengahbesar.setSpecularStg(.1f);
+
+            trampolinetengahkecil.LoadObjFile("../../../Assets/tampolinetengahkecil.obj");
+            trampolinetengahkecil.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            trampolinetengahkecil.setColor(new Vector3((float)57 / 255, (float)126 / 255, (float)1 / 255));
+            trampolinetengahkecil.setAmbientStg(.35f);
+            trampolinetengahkecil.setShininess(1);
+            trampolinetengahkecil.setSpecularStg(.1f);
+
+            trampolinegagang.child.Add(trampolinekaki1);
+            trampolinegagang.child.Add(trampolinekaki2);
+            trampolinegagang.child.Add(trampolinetengahbesar);
+            trampolinegagang.child.Add(trampolinetengahkecil);
+
+            trampolinegagang.translate(.25f, .2f, .1f);
+            trampolinegagang.scale(.5f);
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -722,6 +766,9 @@ namespace UASGrafkom
 
             //policecar
             createPoliceCar();
+
+            //trampoline
+            createTrampoline();
 
 
 
@@ -771,8 +818,10 @@ namespace UASGrafkom
                 garymain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
                 //police car
-                //policecar
                 policecarBody1.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+                //trampoline
+                trampolinegagang.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
 
 
@@ -1143,17 +1192,17 @@ namespace UASGrafkom
                 //naik turun
                 if (atas4)
                 {
-                    spongebobmain.translate(0, .001f, 0);
+                    spongebobmain.translate(0, .0015f, 0);
                 }
                 else
                 {
-                    spongebobmain.translate(0, -.0005f, 0);
+                    spongebobmain.translate(0, -.0007f, 0);
                 }
-                if (spongebobmain.getRealPos().Y <= .115f)
+                if (spongebobmain.getRealPos().Y <= .135f)
                 {
                     atas4 = true;
                 }
-                else if (spongebobmain.getRealPos().Y >= .175f)
+                else if (spongebobmain.getRealPos().Y >= .195f)
                 {
                     atas4 = false;
                 }
