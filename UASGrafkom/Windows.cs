@@ -607,7 +607,12 @@ namespace UASGrafkom
             garymain.child.Add(garyretina);
             garymain.child.Add(garypupil);
 
-            garymain.translate(4.0f, 1.73f, 0.9f);
+            garymain.translate(4.15f, 1.7f, 0.9f);
+
+            garymain.backtozero();
+            garymain.rotateall(0, -90, 0);
+            garymain.backtonormal();
+
             garymain.scale(0.06f);
         }
 
