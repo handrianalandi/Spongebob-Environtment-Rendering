@@ -87,6 +87,13 @@ namespace UASGrafkom
         Mesh policecarMesin = new Mesh();
         Mesh policecarKincir = new Mesh();
 
+        //trampoline
+        Mesh trampolinegagang = new Mesh();
+        Mesh trampolinekaki1 = new Mesh();
+        Mesh trampolinekaki2 = new Mesh();
+        Mesh trampolinetengahbesar = new Mesh();
+        Mesh trampolinetengahkecil = new Mesh();
+
 
 
         private Camera _camera;
@@ -107,7 +114,11 @@ namespace UASGrafkom
 
         //animasi police
         int counter3 = 0;
-        bool depan3 = true;
+
+        //animasi spongebob
+        int counter4 = 0;
+        bool atas4 = true;
+        bool puter = true;
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -682,6 +693,7 @@ namespace UASGrafkom
                 animateSquidward();
                 animatePatrick();
                 animatePoliceCar();
+                animateSpongebob();
             }
 
             
@@ -889,9 +901,13 @@ namespace UASGrafkom
                 rumahsquidwardbase.rotateall(0, .5f, 0);
                 rumahsquidwardbase.backtonormal();
             }
-            if (KeyboardState.IsKeyPressed(Keys.Left))
+            if (KeyboardState.IsKeyDown(Keys.Left))
             {
-                Console.WriteLine(policecarBody1.getRealPos());
+
+                spongebobmain.backtozero();
+                spongebobmain.rotateall(-.1f);
+                spongebobmain.backtonormal();
+
             }
             if (KeyboardState.IsKeyPressed(Keys.Right))
             {
@@ -953,9 +969,12 @@ namespace UASGrafkom
             }
             if (KeyboardState.IsKeyPressed(Keys.C))
             {
-                _camera.Position = patrickretina.getRealPos();
+                Console.WriteLine(_camera.Position.X + " " + _camera.Position.Y + " " + _camera.Position.Z);
             }
-
+            if (KeyboardState.IsKeyPressed(Keys.Y))
+            {
+                Console.WriteLine(spongebobmain.getRealPos().X + " " + spongebobmain.getRealPos().Y + " " + spongebobmain.getRealPos().Z);
+            }
             //rotasi pakai mouse
             if (!IsFocused)
             {
@@ -1060,6 +1079,38 @@ namespace UASGrafkom
             else
             {
                 counter3++;
+            }
+        }
+        void animateSpongebob()
+        {
+            if (counter4 == 10)
+            {
+                //naik turun
+                if (atas4)
+                {
+                    spongebobmain.translate(0, .001f, 0);
+                }
+                else
+                {
+                    spongebobmain.translate(0, -.0005f, 0);
+                }
+                if (spongebobmain.getRealPos().Y <= .115f)
+                {
+                    atas4 = true;
+                }
+                else if (spongebobmain.getRealPos().Y >= .175f)
+                {
+                    atas4 = false;
+                }
+
+
+                
+
+                    counter4 = 0;
+            }
+            else
+            {
+                counter4++;
             }
         }
     }
