@@ -1064,73 +1064,6 @@ namespace UASGrafkom
                     _camera.Yaw += -168;
                 }
             }
-
-
-
-            // J (putar -> rotasi sumbu z)
-            if (KeyboardState.IsKeyDown(Keys.J))
-            {
-                _objectPos *= 2;
-                var axis = new Vector3(0, 0, 1);
-                _camera.Position -= _objectPos;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, _rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
-
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
-            }
-
-            // L (putar -> rotasi sumbu z)
-            if (KeyboardState.IsKeyDown(Keys.L))
-            {
-
-                _objectPos *= 2;
-                var axis = new Vector3(0, 0, 1);
-                _camera.Position -= _objectPos;
-                _camera.Position = Vector3.Transform(_camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, -_rotationSpeed).ExtractRotation());
-                _camera.Position += _objectPos;
-
-                _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);
-                _objectPos /= 2;
-            }
-            if (KeyboardState.IsKeyDown(Keys.B))
-            {
-                Console.WriteLine(mataharisun.getRealPos());
-                Console.WriteLine(mataharisun.scalefloat);
-                rumahsquidwardbase.backtozero();
-                rumahsquidwardbase.rotateall(0, .5f, 0);
-                rumahsquidwardbase.backtonormal();
-            }
-            if (KeyboardState.IsKeyDown(Keys.Left))
-            {
-
-                spongebobmain.backtozero();
-                spongebobmain.rotateall(-.1f);
-                spongebobmain.backtonormal();
-
-            }
-            if (KeyboardState.IsKeyPressed(Keys.Right))
-            {
-                tanah.move(-.01f, 0, 0);
-            }
-            if (KeyboardState.IsKeyPressed(Keys.Up))
-            {
-                tanah.move(0, 0, 0.01f);
-            }
-            if (KeyboardState.IsKeyPressed(Keys.Down))
-            {
-                tanah.move(0, 0, -0.01f);
-            }
-            if (KeyboardState.IsKeyDown(Keys.E))
-            {
-                tanah.rotateall(0, .1f);
-            }
-            if (KeyboardState.IsKeyDown(Keys.Q))
-            {
-                tanah.rotateall(0, -.1f);
-            }
             //plus sens
             if (KeyboardState.IsKeyReleased(Keys.PageUp))
             {
@@ -1149,33 +1082,6 @@ namespace UASGrafkom
                 {
                     sensitivity = .01f;
                 }
-            }
-
-            if (KeyboardState.IsKeyPressed(Keys.Z))
-            {
-                if (mataharidepan)
-                {
-                    _sunPos.Z -= .1f;
-                    _sunPos.Y += .1f;
-                }
-                else
-                {
-                    _sunPos.Z -= .1f;
-                    _sunPos.Y -= .1f;
-                }
-                if (_sunPos.Y >= 1.5f)
-                {
-                    mataharidepan = false;
-                }
-                //_camera.Position = _sunPos;
-            }
-            if (KeyboardState.IsKeyPressed(Keys.C))
-            {
-                _camera.Position = policecarBody1.rotation*policecarBody1.getRealPos();
-            }
-            if (KeyboardState.IsKeyPressed(Keys.Y))
-            {
-                Console.WriteLine(spongebobmain.getRealPos().X + " " + spongebobmain.getRealPos().Y + " " + spongebobmain.getRealPos().Z);
             }
             //rotasi pakai mouse
             if (!usingcamera)
