@@ -19,10 +19,11 @@ namespace UASGrafkom
 
         private Vector3 _sunPos = new Vector3(0f, 3f, 3f);
 
-
+        //environment
         Mesh tanah = new Mesh();
         Mesh jalan = new Mesh();
         Mesh mataharisun = new Mesh();
+        Mesh uburubur = new Mesh();
 
         //rumah squidward
         Mesh rumahsquidwardbase = new Mesh();
@@ -407,6 +408,19 @@ namespace UASGrafkom
             jalan.setShininess(4);
             jalan.translate(0, .29f, 1f);
             jalan.scale(.3f);
+
+            uburubur.LoadObjFile("../../../Assets/uburubur.obj");
+            uburubur.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            uburubur.setColor(new Vector3((float)255 / 255, (float)94 / 255, (float)226 / 255));
+            uburubur.setAmbientStg(.5f);
+            uburubur.setShininess(1);
+            uburubur.setSpecularStg(.4f);
+            uburubur.translate(-.05f, .3f, -.2f);
+            uburubur.scale(.7f);
+
+            tanah.child.Add(mataharisun);
+            tanah.child.Add(jalan);
+            tanah.child.Add(uburubur);
         }
         protected void createSquidward()
         {
@@ -647,7 +661,7 @@ namespace UASGrafkom
         protected void createPoliceCar()
         {
 
-            policecarBody1.LoadObjFile("../../../Assets/policecarBody1.obj");
+            policecarBody1.LoadObjFile("../../../Assets/policecarBody.obj");
             policecarBody1.setupObject((float)Size.X, (float)Size.Y, "lighting");
             policecarBody1.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)255 / 255));
             policecarBody1.setAmbientStg(.35f);
@@ -675,13 +689,6 @@ namespace UASGrafkom
             policecarSiren.setShininess(1);
             policecarSiren.setSpecularStg(.1f);
 
-            policecarKaca1.LoadObjFile("../../../Assets/policecarKaca1.obj");
-            policecarKaca1.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            policecarKaca1.setColor(new Vector3((float)225 / 255, (float)225 / 255, (float)225 / 255));
-            policecarKaca1.setAmbientStg(.35f);
-            policecarKaca1.setShininess(1);
-            policecarKaca1.setSpecularStg(.1f);
-
             policecarKaca2.LoadObjFile("../../../Assets/policecarKaca2.obj");
             policecarKaca2.setupObject((float)Size.X, (float)Size.Y, "lighting");
             policecarKaca2.setColor(new Vector3((float)123 / 255, (float)188 / 255, (float)235 / 255));
@@ -703,14 +710,12 @@ namespace UASGrafkom
             policecarKincir.setShininess(1);
             policecarKincir.setSpecularStg(.1f);
             //edit
-            //policecarKincir.rotate(0, 90);
             policecarKincir.translate(0, -.02f, .21f);
 
 
             policecarBody1.child.Add(policecarBan);
             policecarBody1.child.Add(policecarBody2);
             policecarBody1.child.Add(policecarSiren);
-            policecarBody1.child.Add(policecarKaca1);
             policecarBody1.child.Add(policecarKaca2);
             policecarBody1.child.Add(policecarMesin);
             policecarBody1.child.Add(policecarKincir);
@@ -857,9 +862,7 @@ namespace UASGrafkom
             {
 
                 //environment
-                mataharisun.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 tanah.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-                jalan.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
                 //rumah
                 rumahsquidwardbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
