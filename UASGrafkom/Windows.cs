@@ -108,6 +108,21 @@ namespace UASGrafkom
         Mesh rocks2 = new Mesh();
         Mesh rocks3 = new Mesh();
 
+        //krusty krab
+        Mesh framekrusty = new Mesh();
+        Mesh tongkatnama = new Mesh();
+        Mesh bunderannama = new Mesh();
+        Mesh tulisankrustykrab = new Mesh();
+        Mesh dalemkrustykrab = new Mesh();
+        Mesh gagangpintukrusty = new Mesh();
+
+        //mr crab
+        Mesh badanmrcrab = new Mesh();
+        Mesh kemejacrab = new Mesh();
+        Mesh celanacrab = new Mesh();
+        Mesh matacrab = new Mesh();
+        Mesh bagianhitamcrab = new Mesh();
+
         private Camera _camera;
         private Vector3 _objectPos;
 
@@ -396,10 +411,11 @@ namespace UASGrafkom
             tanah.LoadObjFile("../../../Assets/tanah.obj");
             tanah.setupObject((float)Size.X, (float)Size.Y, "lighting");
             tanah.setColor(new Vector3((float)208 / 255, (float)210 / 255, (float)170 / 255));
-            tanah.scale(.5f);
+            tanah.scale(.7f);
             tanah.setAmbientStg(.4f);
             tanah.setShininess(1);
             tanah.setSpecularStg(.1f);
+            tanah.translate(.0f, -0.0395f, .0f);
 
             jalan.LoadObjFile("../../../Assets/jalan.obj");
             jalan.setupObject((float)Size.X, (float)Size.Y, "lighting");
@@ -802,6 +818,142 @@ namespace UASGrafkom
             rocks.child.Add(rocks2);
             rocks.child.Add(rocks3);
         }
+
+        protected void createkrustykrab()
+        {
+            framekrusty.LoadObjFile("../../../Assets/framekrusty.obj");
+            framekrusty.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            framekrusty.setColor(new Vector3((float)102 / 255, (float)51 / 255, (float)0 / 255));
+            framekrusty.setAmbientStg(.5f);
+            framekrusty.setShininess(1);
+            framekrusty.setSpecularStg(.2f);
+            framekrusty.translate(-5.5f, .79f, 0.1f);
+            framekrusty.scale(0.13f);
+            framekrusty.rotateall(0, 180f);
+
+
+            tongkatnama.LoadObjFile("../../../Assets/tongkatnama.obj");
+            tongkatnama.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            tongkatnama.setColor(new Vector3((float)224 / 255, (float)224 / 255, (float)224 / 255));
+            tongkatnama.setAmbientStg(.5f);
+            tongkatnama.setShininess(1);
+            tongkatnama.setSpecularStg(.2f);
+            tongkatnama.translate(-5.3f, .79f, -0.3f);
+            tongkatnama.scale(0.13f);
+            tongkatnama.rotateall(0, 180f);
+
+            bunderannama.LoadObjFile("../../../Assets/bunderannama.obj");
+            bunderannama.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            bunderannama.setColor(new Vector3((float)255 / 255, (float)153 / 255, (float)204 / 255));
+            bunderannama.setAmbientStg(.5f);
+            bunderannama.setShininess(1);
+            bunderannama.setSpecularStg(.2f);
+            bunderannama.translate(-5.3f, .79f, -0.3f);
+            bunderannama.scale(0.13f);
+            bunderannama.rotateall(0, 180f);
+
+            tulisankrustykrab.LoadObjFile("../../../Assets/tulisankrustykrab.obj");
+            tulisankrustykrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            tulisankrustykrab.setColor(new Vector3((float)0 / 255, (float)0 / 255, (float)0 / 255));
+            tulisankrustykrab.setAmbientStg(.5f);
+            tulisankrustykrab.setShininess(1);
+            tulisankrustykrab.setSpecularStg(.2f);
+            tulisankrustykrab.translate(-5.3f, .79f, -0.3f);
+            tulisankrustykrab.scale(0.13f);
+            tulisankrustykrab.rotateall(0, 180f);
+
+            dalemkrustykrab.LoadObjFile("../../../Assets/dalemkrustykrab.obj");
+            dalemkrustykrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            dalemkrustykrab.setColor(new Vector3((float)216 / 255, (float)161 / 255, (float)129 / 255));
+            dalemkrustykrab.setAmbientStg(.5f);
+            dalemkrustykrab.setShininess(1);
+            dalemkrustykrab.setSpecularStg(.2f);
+            dalemkrustykrab.translate(-5.5f, .79f, 0.1f);
+            dalemkrustykrab.scale(0.13f);
+            dalemkrustykrab.rotateall(0, 180f);
+
+            gagangpintukrusty.LoadObjFile("../../../Assets/gagangpintukrusty.obj");
+            gagangpintukrusty.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            gagangpintukrusty.setColor(new Vector3((float)255 / 255, (float)247 / 255, (float)0 / 255));
+            gagangpintukrusty.setAmbientStg(.5f);
+            gagangpintukrusty.setShininess(1);
+            gagangpintukrusty.setSpecularStg(.2f);
+            gagangpintukrusty.translate(-5.5f, .79f, 0.1f);
+            gagangpintukrusty.scale(0.13f);
+            gagangpintukrusty.rotateall(0, 180f);
+
+            framekrusty.child.Add(tongkatnama);
+            framekrusty.child.Add(bunderannama);
+            framekrusty.child.Add(tulisankrustykrab);
+            framekrusty.child.Add(dalemkrustykrab);
+            framekrusty.child.Add(gagangpintukrusty);
+
+
+
+            framekrusty.translate(0, .02f, 0);
+
+
+        }
+
+        protected void createmrcrab()
+        {
+            badanmrcrab.LoadObjFile("../../../Assets/badanmrcrab.obj");
+            badanmrcrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            badanmrcrab.setColor(new Vector3((float)255 / 255, (float)0 / 255, (float)0 / 255));
+            badanmrcrab.setAmbientStg(.5f);
+            badanmrcrab.setShininess(1);
+            badanmrcrab.setSpecularStg(.2f);
+            badanmrcrab.translate(350.5f, 53.0f, 80.1f);
+            badanmrcrab.scale(0.0018f);
+
+
+            kemejacrab.LoadObjFile("../../../Assets/kemejacrab.obj");
+            kemejacrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            kemejacrab.setColor(new Vector3((float)77 / 255, (float)244 / 255, (float)255 / 255));
+            kemejacrab.setAmbientStg(.5f);
+            kemejacrab.setShininess(1);
+            kemejacrab.setSpecularStg(.2f);
+            kemejacrab.translate(350.5f, 53.0f, 80.1f);
+            kemejacrab.scale(0.0018f);
+
+            celanacrab.LoadObjFile("../../../Assets/celanacrab.obj");
+            celanacrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            celanacrab.setColor(new Vector3((float)243 / 255, (float)206 / 255, (float)255 / 255));
+            celanacrab.setAmbientStg(.5f);
+            celanacrab.setShininess(1);
+            celanacrab.setSpecularStg(.2f);
+            celanacrab.translate(350.5f, 53.0f, 80.1f);
+            celanacrab.scale(0.0018f);
+
+            matacrab.LoadObjFile("../../../Assets/matacrab.obj");
+            matacrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            matacrab.setColor(new Vector3((float)255 / 255, (float)253 / 255, (float)206 / 255));
+            matacrab.setAmbientStg(.5f);
+            matacrab.setShininess(1);
+            matacrab.setSpecularStg(.2f);
+            matacrab.translate(350.5f, 53.0f, 80.1f);
+            matacrab.scale(0.0018f);
+
+            bagianhitamcrab.LoadObjFile("../../../Assets/bagianhitamcrab.obj");
+            bagianhitamcrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            bagianhitamcrab.setColor(new Vector3((float)0 / 255, (float)0 / 255, (float)0 / 255));
+            bagianhitamcrab.setAmbientStg(.5f);
+            bagianhitamcrab.setShininess(1);
+            bagianhitamcrab.setSpecularStg(.2f);
+            bagianhitamcrab.translate(350.5f, 53.0f, 80.1f);
+            bagianhitamcrab.scale(0.0018f);
+
+
+            badanmrcrab.child.Add(kemejacrab);
+            badanmrcrab.child.Add(celanacrab);
+            badanmrcrab.child.Add(matacrab);
+            badanmrcrab.child.Add(bagianhitamcrab);
+
+
+            badanmrcrab.translate(0, .02f, 0);
+
+
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -831,6 +983,11 @@ namespace UASGrafkom
             //rocks
             createRocks();
 
+            //krustykrab
+            createkrustykrab();
+
+            //mr crab
+            createmrcrab();
 
             // Camera
             var _cameraPosInit = new Vector3(0, 0, 0);
@@ -868,12 +1025,14 @@ namespace UASGrafkom
                 rumahsquidwardbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 rumahspongbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 rumahpatrick.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
-            
+                framekrusty.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
                 //characters
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 patrickmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 spongebobmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 garymain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                badanmrcrab.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
 
                 //police car
                 policecarBody1.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
