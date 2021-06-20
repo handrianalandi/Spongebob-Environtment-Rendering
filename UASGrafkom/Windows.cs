@@ -140,6 +140,8 @@ namespace UASGrafkom
 
 
 
+        //title 'Spongebob SquarePants'
+        Mesh tulisanjudul = new Mesh();
 
 
         private Camera _camera;
@@ -1083,6 +1085,18 @@ namespace UASGrafkom
 
 
         }
+        void createJudul()
+        {
+            tulisanjudul.LoadObjFile("../../../Assets/tulisanjudul.obj");
+            tulisanjudul.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            tulisanjudul.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)0 / 255));
+            tulisanjudul.setAmbientStg(.5f);
+            tulisanjudul.setShininess(1);
+            tulisanjudul.setSpecularStg(.01f);
+            tulisanjudul.translate(0.2f, .22f, -0.1f);
+            tulisanjudul.scale(4f);
+        }
+
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -1123,6 +1137,8 @@ namespace UASGrafkom
 
             //plankton
             createplankton();
+            //tulisan judul / title
+            createJudul();
 
             // Camera
             var _cameraPosInit = new Vector3(0, 0, 0);
@@ -1181,6 +1197,9 @@ namespace UASGrafkom
 
                 //rocks
                 rocks.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
+                //tulisan judul / title
+                tulisanjudul.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
             }
 
 
