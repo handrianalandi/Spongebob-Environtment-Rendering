@@ -1499,9 +1499,9 @@ namespace UASGrafkom
                 policecarBody1.rotateall(0, -90f);
                 policecarKincir.rotate(0, 0, 5f);
                 policecarBody1.move(0, 0, -.004f);
-                if (policecarBody1.getRealPos().Z <= -.39f)
+                if (policecarBody1.getRealPos().Z <= -.7f)
                 {
-                    policecarBody1.move(0, 0, 2f);
+                    policecarBody1.move(0, 0, 3f);
                 }
                 policecarBody1.rotateall(0, 90f);
 
