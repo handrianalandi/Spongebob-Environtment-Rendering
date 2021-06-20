@@ -1215,7 +1215,7 @@ namespace UASGrafkom
 
         protected override void OnUpdateFrame(FrameEventArgs args)
         {
-            float cameraSpeed = 1.5f;
+            const float cameraSpeed = 1f;
             argstime = (float)args.Time;
 
             // Escape keyboard
@@ -1411,25 +1411,6 @@ namespace UASGrafkom
                 }
             }
 
-            //plus gerak
-            if (KeyboardState.IsKeyReleased(Keys.Right))
-            {
-                cameraSpeed += .1f;
-                if (cameraSpeed >= 1.51f)
-                {
-                    cameraSpeed = 1.5f;
-                }
-            }
-
-            //min gerak
-            if (KeyboardState.IsKeyReleased(Keys.Left))
-            {
-                cameraSpeed -= .1f;
-                if (cameraSpeed <= 0.4f)
-                {
-                    cameraSpeed = .5f;
-                }
-            }
 
 
             //rotasi pakai mouse
