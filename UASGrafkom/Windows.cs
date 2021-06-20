@@ -25,6 +25,8 @@ namespace UASGrafkom
         Mesh mataharisun = new Mesh();
         Mesh uburubur = new Mesh();
         Mesh jalankekrustykrab = new Mesh();
+        Mesh jalankechumbucket = new Mesh();
+
 
 
         //rumah squidward
@@ -125,9 +127,19 @@ namespace UASGrafkom
         Mesh matacrab = new Mesh();
         Mesh bagianhitamcrab = new Mesh();
 
-        //mr crab
+        //chumbucket
         Mesh chumbucket = new Mesh();
         Mesh chumbucketatribut = new Mesh();
+
+        //chumbucket
+        Mesh badanplankton = new Mesh();
+        Mesh mataplankton = new Mesh();
+        Mesh alisplankton = new Mesh();
+        Mesh tandukplankton = new Mesh();
+        Mesh intimataplankton = new Mesh();
+
+
+
 
 
         private Camera _camera;
@@ -449,10 +461,20 @@ namespace UASGrafkom
             jalankekrustykrab.translate(.48f, .1595f, 0.92f);
             jalankekrustykrab.scale(.3f);
 
+            jalankechumbucket.LoadObjFile("../../../Assets/jalankechumbucket.obj");
+            jalankechumbucket.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            jalankechumbucket.setColor(new Vector3((float)104 / 255, (float)122 / 255, (float)130 / 255));
+            jalankechumbucket.setAmbientStg(.6f);
+            jalankechumbucket.setShininess(4);
+            jalankechumbucket.translate(.38f, .1595f, 0.9f);
+            jalankechumbucket.scale(.3f);
+
             tanah.child.Add(mataharisun);
             tanah.child.Add(jalan);
             tanah.child.Add(uburubur);
             tanah.child.Add(jalankekrustykrab);
+            tanah.child.Add(jalankechumbucket);
+
 
         }
         protected void createSquidward()
@@ -1002,6 +1024,65 @@ namespace UASGrafkom
 
         }
 
+        protected void createplankton()
+        {
+            badanplankton.LoadObjFile("../../../Assets/badanplankton.obj");
+            badanplankton.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            badanplankton.setColor(new Vector3((float)100 / 255, (float)206 / 255, (float)178 / 255));
+            badanplankton.setAmbientStg(.5f);
+            badanplankton.setShininess(1);
+            badanplankton.setSpecularStg(.2f);
+            badanplankton.translate(-500.0f, 90.0f, 0.0f);
+            badanplankton.scale(0.001f);
+
+            alisplankton.LoadObjFile("../../../Assets/alisplankton.obj");
+            alisplankton.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            alisplankton.setColor(new Vector3((float)0 / 255, (float)0 / 255, (float)0 / 255));
+            alisplankton.setAmbientStg(.5f);
+            alisplankton.setShininess(1);
+            alisplankton.setSpecularStg(.2f);
+            alisplankton.translate(-500.0f, 90.0f, 0.0f);
+            alisplankton.scale(0.001f);
+
+            mataplankton.LoadObjFile("../../../Assets/mataplankton.obj");
+            mataplankton.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            mataplankton.setColor(new Vector3((float)244 / 255, (float)255 / 255, (float)166 / 255));
+            mataplankton.setAmbientStg(.5f);
+            mataplankton.setShininess(1);
+            mataplankton.setSpecularStg(.2f);
+            mataplankton.translate(-500.0f, 90.0f, 0.0f);
+            mataplankton.scale(0.001f);
+
+            tandukplankton.LoadObjFile("../../../Assets/tandukplankton.obj");
+            tandukplankton.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            tandukplankton.setColor(new Vector3((float)39 / 255, (float)98 / 255, (float)79 / 255));
+            tandukplankton.setAmbientStg(.5f);
+            tandukplankton.setShininess(1);
+            tandukplankton.setSpecularStg(.2f);
+            tandukplankton.translate(-500.0f, 90.0f, 0.0f);
+            tandukplankton.scale(0.001f);
+
+            intimataplankton.LoadObjFile("../../../Assets/intimataplankton.obj");
+            intimataplankton.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            intimataplankton.setColor(new Vector3((float)255 / 255, (float)149 / 255, (float)255 / 255));
+            intimataplankton.setAmbientStg(.5f);
+            intimataplankton.setShininess(1);
+            intimataplankton.setSpecularStg(.2f);
+            intimataplankton.translate(-500.0f, 90.0f, -1.0f);
+            intimataplankton.scale(0.001f);
+
+
+            badanplankton.child.Add(alisplankton);
+            badanplankton.child.Add(mataplankton);
+            badanplankton.child.Add(tandukplankton);
+            badanplankton.child.Add(intimataplankton);
+
+
+
+            badanplankton.translate(0, .02f, 0);
+
+
+        }
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -1039,6 +1120,9 @@ namespace UASGrafkom
 
             //chumbucket
             createchumbucket();
+
+            //plankton
+            createplankton();
 
             // Camera
             var _cameraPosInit = new Vector3(0, 0, 0);
@@ -1086,6 +1170,8 @@ namespace UASGrafkom
                 spongebobmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 garymain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 badanmrcrab.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                badanplankton.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
 
                 //police car
                 policecarBody1.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
