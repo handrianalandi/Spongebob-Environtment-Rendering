@@ -427,9 +427,9 @@ namespace UASGrafkom
         }
         protected void createEnvironment()
         {
-            mataharisun.LoadObjFile("../../../Assets/bantal.obj");
+            mataharisun.LoadObjFile("../../../Assets/matahari.obj");
             mataharisun.setupObject((float)Size.X, (float)Size.Y, "lighting");
-            mataharisun.setColor(new Vector3(1, 1, 1));
+            mataharisun.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)0 / 255));
             mataharisun.translate(_sunPos.X, _sunPos.Y, _sunPos.Z);
 
             tanah.LoadObjFile("../../../Assets/tanah.obj");
