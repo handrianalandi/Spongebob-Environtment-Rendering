@@ -431,6 +431,8 @@ namespace UASGrafkom
             mataharisun.setupObject((float)Size.X, (float)Size.Y, "lighting");
             mataharisun.setColor(new Vector3((float)255 / 255, (float)255 / 255, (float)0 / 255));
             mataharisun.translate(_sunPos.X, _sunPos.Y, _sunPos.Z);
+            mataharisun.setAmbientStg(1f);
+            mataharisun.setSpecularStg(1f);
 
             tanah.LoadObjFile("../../../Assets/tanah.obj");
             tanah.setupObject((float)Size.X, (float)Size.Y, "lighting");
