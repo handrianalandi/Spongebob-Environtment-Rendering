@@ -173,6 +173,9 @@ namespace UASGrafkom
         Mesh cameraFocus;
         const float _rotationSpeed = .02f;
 
+        //float time
+        float argstime=0;
+
 
 
         public Windows(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings)
@@ -1211,6 +1214,8 @@ namespace UASGrafkom
         protected override void OnUpdateFrame(FrameEventArgs args)
         {
             const float cameraSpeed = 1.5f;
+            argstime = (float)args.Time;
+
             // Escape keyboard
             if (KeyboardState.IsKeyDown(Keys.Escape))
             {
@@ -1368,7 +1373,7 @@ namespace UASGrafkom
                 {
                     _objectPos = cameraFocus.getRealPos();
                     //_camera.Position = new Vector3(0);
-                    var axis = new Vector3(0, 1200, 0) * (float)args.Time; ;
+                    var axis = new Vector3(0, 1200, 0) * (float)args.Time;
                     _camera.Position -= _objectPos;
                     _camera.Yaw -= _rotationSpeed;
                     _camera.Position = Vector3.Transform(_camera.Position,
@@ -1437,13 +1442,13 @@ namespace UASGrafkom
                 if (kanan)
                 {
                     squidwardkepala.backtozero();
-                    squidwardkepala.rotateall(0, 1f, 0);
+                    squidwardkepala.rotateall(0, 1f * argstime * 1000, 0);
                     squidwardkepala.backtonormal();
                 }
                 else
                 {
                     squidwardkepala.backtozero();
-                    squidwardkepala.rotateall(0, -1f, 0);
+                    squidwardkepala.rotateall(0, -1f * argstime * 1000, 0);
                     squidwardkepala.backtonormal();
                 }
                 if (squidwardkepala.rotation.Y >= 30f)
@@ -1468,13 +1473,13 @@ namespace UASGrafkom
                 if (atas)
                 {
                     patricktangan.backtozero();
-                    patricktangan.rotateall(.25f);
+                    patricktangan.rotateall(.25f * argstime * 1000);
                     patricktangan.backtonormal();
                 }
                 else
                 {
                     patricktangan.backtozero();
-                    patricktangan.rotateall(-.25f);
+                    patricktangan.rotateall(-.25f * argstime * 1000);
                     patricktangan.backtonormal();
                 }
                 if (patricktangan.rotation.X >= 7.5f)
@@ -1498,7 +1503,7 @@ namespace UASGrafkom
             {
                 policecarBody1.rotateall(0, -90f);
                 policecarKincir.rotate(0, 0, 5f);
-                policecarBody1.move(0, 0, -.004f);
+                policecarBody1.move(0, 0, -.004f * argstime * 1000);
                 if (policecarBody1.getRealPos().Z <= -.7f)
                 {
                     policecarBody1.move(0, 0, 3f);
@@ -1520,11 +1525,11 @@ namespace UASGrafkom
                 //naik turun
                 if (atas4)
                 {
-                    spongebobmain.translate(0, .0015f, 0);
+                    spongebobmain.translate(0, .0015f*argstime*1000, 0);
                 }
                 else
                 {
-                    spongebobmain.translate(0, -.0007f, 0);
+                    spongebobmain.translate(0, -.0007f * argstime * 1000, 0);
                 }
                 if (spongebobmain.getRealPos().Y <= .135f)
                 {
