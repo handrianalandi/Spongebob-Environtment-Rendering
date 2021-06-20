@@ -1392,7 +1392,7 @@ namespace UASGrafkom
                 }
             }
             //plus sens
-            if (KeyboardState.IsKeyReleased(Keys.PageUp))
+            if (KeyboardState.IsKeyReleased(Keys.Up))
             {
                 sensitivity += .01f;
                 if (sensitivity >= 1f)
@@ -1402,7 +1402,7 @@ namespace UASGrafkom
             }
 
             //min sens
-            if (KeyboardState.IsKeyReleased(Keys.PageDown))
+            if (KeyboardState.IsKeyReleased(Keys.Down))
             {
                 sensitivity -= .01f;
                 if (sensitivity <= 0f)
