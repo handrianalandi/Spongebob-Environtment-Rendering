@@ -18,8 +18,6 @@ namespace UASGrafkom
         List<Vector3> textureVertices = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
         List<uint> vertexIndices = new List<uint>();
-        List<uint> textureIndices = new List<uint>();
-        List<uint> normalIndices = new List<uint>();
         public Vector3 position;
         public float scalefloat;
         public float degree;
@@ -27,20 +25,16 @@ namespace UASGrafkom
         int _vertexBufferObject;
         int _elementBufferObject;
         int _vertexArrayObject;
-        int _normalsVBO;
         Shader _shader;
         Matrix4 transform;
         Matrix4 view;
         Matrix4 projection;
-        int counter = 0;
         float ambientStrength = .2f;
         float shininess = 32;
         float specularStrength = .5f;
 
-        //squidwardupdate
         public Vector3 rotation;
 
-        //menambahkan hirarki kedalam parent
         public List<Mesh> child = new List<Mesh>();
         public Mesh()
         {
@@ -48,7 +42,6 @@ namespace UASGrafkom
             scalefloat = 1;
             degree = 0;
 
-            //newsquid
             rotation.X = 0;
             rotation.Y = 0;
             rotation.Z = 0;
@@ -66,7 +59,6 @@ namespace UASGrafkom
                 meshobj.move(x, y, z);
             }
         }
-        //try backtozero
         public void backtozero()
         {
             transform = transform * Matrix4.CreateScale(1 / scalefloat);
@@ -108,24 +100,17 @@ namespace UASGrafkom
         }
         public void setupObject(float Sizex, float Sizey, string abc)
         {
-            //inisialisasi Transformasi
             transform = Matrix4.Identity;
-
-            //inisialisasi buffer
 
             _vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
 
-            //parameter 2 yg kita panggil vertices.Count == array.length
             GL.BufferData<float>(BufferTarget.ArrayBuffer,
                 realVertices.Count * sizeof(float),
                 realVertices.ToArray(),
                 BufferUsageHint.StaticDraw);
             _shader = new Shader("../../../Shaders/shaderl.vert", "../../../Shaders/" + abc + ".frag");
 
-
-
-            //inisialisasi array
             _vertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(_vertexArrayObject);
 
@@ -138,16 +123,12 @@ namespace UASGrafkom
             GL.EnableVertexAttribArray(normalLocation);
             GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
 
-
-            //setting disini
-            //                               x = 0 y = 0 z = 
             view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
             projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Sizex / Sizey, 0.1f, 100.0f);
 
         }
         public void render(Camera _camera, Vector3 _lightColor, Vector3 _lightPos)
         {
-            //render itu akan selalu terpanggil setiap frame
             _shader.Use();
 
             GL.BindVertexArray(_vertexArrayObject);
@@ -169,8 +150,6 @@ namespace UASGrafkom
 
             GL.DrawArrays(PrimitiveType.Triangles, 0, realVertices.Count / 2);
 
-
-            //ada disini
             foreach (var meshobj in child)
             {
                 meshobj.render(_camera, _lightColor, _lightPos);
@@ -217,7 +196,6 @@ namespace UASGrafkom
         public void rotate(float x = 0, float y = 0, float z = 0)
         {
             backtozero();
-            //transform
             transform = transform * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(x));
             transform = transform * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(y));
             transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(z));
@@ -228,15 +206,12 @@ namespace UASGrafkom
         }
         public void rotateall(float x = 0, float y = 0, float z = 0)
         {
-
-            //transform
             transform = transform * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(x));
             transform = transform * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(y));
             transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(z));
             degree += y;
             degree %= 360;
 
-            //newsquid
             rotation.X += x;
             rotation.Y += y;
             rotation.Z += z;
@@ -251,7 +226,6 @@ namespace UASGrafkom
         {
             transform = transform * Matrix4.CreateScale(scaling);
             scalefloat *= scaling;
-            //
 
             foreach (var meshobj in child)
             {
@@ -330,27 +304,17 @@ namespace UASGrafkom
                             {
                                 if (w.Length == 0)
                                     continue;
-                                //Console.WriteLine(w);
                                 string[] comps = w.Split('/');
-                                //Console.WriteLine(uint.Parse(comps[0])+" "+uint.Parse(comps[1])+" "+ uint.Parse(comps[2]));
-                                //Console.WriteLine(vertices[int.Parse(comps[0]) - 1].X+" "+ vertices[int.Parse(comps[0]) - 1].Y + " " + vertices[int.Parse(comps[0]) - 1].Z);
 
-                                //vertice
+                                //vertices
                                 realVertices.Add(vertices[int.Parse(comps[0]) - 1].X);
                                 realVertices.Add(vertices[int.Parse(comps[0]) - 1].Y);
                                 realVertices.Add(vertices[int.Parse(comps[0]) - 1].Z);
+
                                 //normal
                                 realVertices.Add(normals[int.Parse(comps[2]) - 1].X);
                                 realVertices.Add(normals[int.Parse(comps[2]) - 1].Y);
                                 realVertices.Add(normals[int.Parse(comps[2]) - 1].Z);
-                                //Console.WriteLine(int.Parse(comps[2]));
-                                ////texture
-                                //realVertices.Add(textureVertices[int.Parse(comps[1]) - 1].X);
-                                //realVertices.Add(textureVertices[int.Parse(comps[1]) - 1].Y);
-
-
-
-
                             }
                             break;
 
@@ -360,177 +324,6 @@ namespace UASGrafkom
                 }
             }
         }
-        //public void LoadObjFile(string path)
-        //{
-        //    List<Vector4> vertices = new List<Vector4>();
-        //    List<Vector3> textureVertices = new List<Vector3>();
-        //    List<Vector3> normals = new List<Vector3>();
-        //    List<uint> vertexIndices = new List<uint>();
-        //    List<uint> textureIndices = new List<uint>();
-        //    List<uint> normalIndices = new List<uint>();
 
-        //    if (!File.Exists(path))
-        //    {
-        //        throw new FileNotFoundException("Unable to open \"" + path + "\", does not exist.");
-        //    }
-
-        //    using (StreamReader streamReader = new StreamReader(path))
-        //    {
-        //        while (!streamReader.EndOfStream)
-        //        {
-        //            List<string> words = new List<string>(streamReader.ReadLine().ToLower().Split(' '));
-        //            words.RemoveAll(s => s == string.Empty);
-
-        //            if (words.Count == 0)
-        //                continue;
-
-        //            string type = words[0];
-        //            words.RemoveAt(0);
-
-        //            switch (type)
-        //            {
-        //                // vertex
-        //                case "v":
-        //                    vertices.Add(new Vector4(float.Parse(words[0]), float.Parse(words[1]),
-        //                                            float.Parse(words[2]), words.Count < 4 ? 1 : float.Parse(words[3])));
-        //                    break;
-
-        //                case "vt":
-        //                    textureVertices.Add(new Vector3(float.Parse(words[0]), float.Parse(words[1]),
-        //                                                    words.Count < 3 ? 0 : float.Parse(words[2])));
-        //                    break;
-
-        //                case "vn":
-        //                    normals.Add(new Vector3(float.Parse(words[0]), float.Parse(words[1]), float.Parse(words[2])));
-        //                    break;
-
-        //                // face
-        //                case "f":
-        //                    foreach (string w in words)
-        //                    {
-        //                        if (w.Length == 0)
-        //                            continue;
-
-        //                        string[] comps = w.Split('/');
-
-        //                        // subtract 1: indices start from 1, not 0
-        //                        vertexIndices.Add(uint.Parse(comps[0]) - 1);
-
-        //                        if (comps.Length > 1 && comps[1].Length != 0)
-        //                            textureIndices.Add(uint.Parse(comps[1]) - 1);
-
-        //                        if (comps.Length > 2)
-        //                            normalIndices.Add(uint.Parse(comps[2]) - 1);
-        //                    }
-        //                    break;
-
-        //                default:
-        //                    break;
-        //            }
-        //        }
-        //    }
-        //}
-
-        public void createBoxVertices(float x, float y, float z)
-        {
-            //biar lebih fleksibel jangan inisialiasi posisi dan 
-            //panjang kotak didalam tapi ditaruh ke parameter
-            float _positionX = x;
-            float _positionY = y;
-            float _positionZ = z;
-
-            float _boxLength = 0.5f;
-
-            //Buat temporary vector
-            Vector3 temp_vector;
-            //1. Inisialisasi vertex
-            // Titik 1
-            temp_vector.X = _positionX - _boxLength / 2.0f; // x 
-            temp_vector.Y = _positionY + _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ - _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            // Titik 2
-            temp_vector.X = _positionX + _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY + _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ - _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-            // Titik 3
-            temp_vector.X = _positionX - _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY - _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ - _boxLength / 2.0f; // z
-            vertices.Add(temp_vector);
-
-            // Titik 4
-            temp_vector.X = _positionX + _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY - _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ - _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            // Titik 5
-            temp_vector.X = _positionX - _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY + _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ + _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            // Titik 6
-            temp_vector.X = _positionX + _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY + _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ + _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            // Titik 7
-            temp_vector.X = _positionX - _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY - _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ + _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            // Titik 8
-            temp_vector.X = _positionX + _boxLength / 2.0f; // x
-            temp_vector.Y = _positionY - _boxLength / 2.0f; // y
-            temp_vector.Z = _positionZ + _boxLength / 2.0f; // z
-
-            vertices.Add(temp_vector);
-
-            //normals
-
-
-
-
-            //2. Inisialisasi index vertex
-            vertexIndices = new List<uint> {
-                // Segitiga Depan 1
-                0, 1, 2,
-                // Segitiga Depan 2
-                1, 2, 3,
-                // Segitiga Atas 1
-                0, 4, 5,
-                // Segitiga Atas 2
-                0, 1, 5,
-                // Segitiga Kanan 1
-                1, 3, 5,
-                // Segitiga Kanan 2
-                3, 5, 7,
-                // Segitiga Kiri 1
-                0, 2, 4,
-                // Segitiga Kiri 2
-                2, 4, 6,
-                // Segitiga Belakang 1
-                4, 5, 6,
-                // Segitiga Belakang 2
-                5, 6, 7,
-                // Segitiga Bawah 1
-                2, 3, 6,
-                // Segitiga Bawah 2
-                3, 6, 7
-            };
-
-        }
     }
 }

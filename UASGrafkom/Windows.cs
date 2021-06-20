@@ -1145,7 +1145,7 @@ namespace UASGrafkom
                 _camera.Yaw += 0.05f;
             }
 
-            //pindahin posisi kamera
+
             //maju (W)
             if (KeyboardState.IsKeyDown(Keys.W))
             {
@@ -1393,10 +1393,10 @@ namespace UASGrafkom
             {
                 policecarBody1.rotateall(0, -90f);
                 policecarKincir.rotate(0, 0, 5f);
-                policecarBody1.move(0, 0, -.002f);
+                policecarBody1.move(0, 0, -.004f);
                 if (policecarBody1.getRealPos().Z <= -.39f)
                 {
-                    policecarBody1.move(0, 0, 1.5f);
+                    policecarBody1.move(0, 0, 2f);
                 }
                 policecarBody1.rotateall(0, 90f);
 
