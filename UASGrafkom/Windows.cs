@@ -24,6 +24,8 @@ namespace UASGrafkom
         Mesh jalan = new Mesh();
         Mesh mataharisun = new Mesh();
         Mesh uburubur = new Mesh();
+        Mesh jalankekrustykrab = new Mesh();
+
 
         //rumah squidward
         Mesh rumahsquidwardbase = new Mesh();
@@ -434,9 +436,19 @@ namespace UASGrafkom
             uburubur.translate(-.05f, .3f, -.2f);
             uburubur.scale(.7f);
 
+            jalankekrustykrab.LoadObjFile("../../../Assets/jalankekrustykrab.obj");
+            jalankekrustykrab.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            jalankekrustykrab.setColor(new Vector3((float)104 / 255, (float)122 / 255, (float)130 / 255));
+            jalankekrustykrab.setAmbientStg(.6f);
+            jalankekrustykrab.setShininess(4);
+            jalankekrustykrab.translate(.48f, .1595f, 0.92f);
+            jalankekrustykrab.scale(.3f);
+
             tanah.child.Add(mataharisun);
             tanah.child.Add(jalan);
             tanah.child.Add(uburubur);
+            tanah.child.Add(jalankekrustykrab);
+
         }
         protected void createSquidward()
         {
