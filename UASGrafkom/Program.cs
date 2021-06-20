@@ -11,7 +11,7 @@ namespace UASGrafkom
 
             var ourWindow = new NativeWindowSettings()
             {
-                Size = new Vector2i(800, 800),
+                Size = new Vector2i(1920, 1080),
                 Title = "UAS Grafkom Felicia Laksana C14190054, Levina Charin C14190145, Handrian Alandi C14190231"
             };
 
