@@ -1215,7 +1215,7 @@ namespace UASGrafkom
 
         protected override void OnUpdateFrame(FrameEventArgs args)
         {
-            const float cameraSpeed = 1.5f;
+            float cameraSpeed = 1.5f;
             argstime = (float)args.Time;
 
             // Escape keyboard
@@ -1410,6 +1410,28 @@ namespace UASGrafkom
                     sensitivity = .01f;
                 }
             }
+
+            //plus gerak
+            if (KeyboardState.IsKeyReleased(Keys.Right))
+            {
+                cameraSpeed += .1f;
+                if (cameraSpeed >= 1.51f)
+                {
+                    cameraSpeed = 1.5f;
+                }
+            }
+
+            //min gerak
+            if (KeyboardState.IsKeyReleased(Keys.Left))
+            {
+                cameraSpeed -= .1f;
+                if (cameraSpeed <= 0.4f)
+                {
+                    cameraSpeed = .5f;
+                }
+            }
+
+
             //rotasi pakai mouse
             if (!usingcamera)
             {
