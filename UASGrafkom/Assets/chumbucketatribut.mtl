@@ -1,0 +1,55 @@
+# Blender MTL File: 'None'
+# Material Count: 5
+
+newmtl 07_-_Default
+Ns 900.000000
+Ka 0.623666 0.623666 0.623666
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd D:\\.SEMES 4\\GRAFIKA KOMPUTER A\\UASGrafkom levina\\UASGrafkom\\chum bucket\\textures\\07_-_Default_baseColor.jpeg
+
+newmtl 08_-_Default
+Ns 10.309621
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl 09_-_Default
+Ns 10.309621
+Ka 0.700000 0.700000 0.700000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump D:\\.SEMES 4\\GRAFIKA KOMPUTER A\\UASGrafkom levina\\UASGrafkom\\chum bucket\\textures\\09_-_Default_normal.png
+map_Kd D:\\.SEMES 4\\GRAFIKA KOMPUTER A\\UASGrafkom levina\\UASGrafkom\\chum bucket\\textures\\09_-_Default_baseColor.png
+
+newmtl 13_-_Default
+Ns 323.218462
+Ka 0.904154 0.904154 0.904154
+Kd 0.051766 0.006016 0.006016
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl 15_-_Default
+Ns 10.309621
+Ka 1.000000 1.000000 1.000000
+Kd 0.184314 0.000000 0.525490
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3

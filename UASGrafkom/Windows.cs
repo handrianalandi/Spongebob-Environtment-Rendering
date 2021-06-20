@@ -125,6 +125,11 @@ namespace UASGrafkom
         Mesh matacrab = new Mesh();
         Mesh bagianhitamcrab = new Mesh();
 
+        //mr crab
+        Mesh chumbucket = new Mesh();
+        Mesh chumbucketatribut = new Mesh();
+
+
         private Camera _camera;
         private Vector3 _objectPos;
 
@@ -966,6 +971,37 @@ namespace UASGrafkom
 
 
         }
+
+        protected void createchumbucket()
+        {
+            chumbucket.LoadObjFile("../../../Assets/chumbucket.obj");
+            chumbucket.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            chumbucket.setColor(new Vector3((float)0 / 255, (float)114 / 255, (float)171 / 255));
+            chumbucket.setAmbientStg(.5f);
+            chumbucket.setShininess(1);
+            chumbucket.setSpecularStg(.2f);
+            chumbucket.translate(-70.5f, 27.9f, -20.5f);
+            chumbucket.scale(0.01f);
+            //chumbucket.rotateall(0, 160f);
+
+            chumbucketatribut.LoadObjFile("../../../Assets/chumbucketatribut.obj");
+            chumbucketatribut.setupObject((float)Size.X, (float)Size.Y, "lighting");
+            chumbucketatribut.setColor(new Vector3((float)0 / 255, (float)40 / 255, (float)60 / 255));
+            chumbucketatribut.setAmbientStg(.5f);
+            chumbucketatribut.setShininess(1);
+            chumbucketatribut.setSpecularStg(.2f);
+            chumbucketatribut.translate(-70.5f, 27.9f, -20.4f);
+            chumbucketatribut.scale(0.01f);
+            //chumbucketatribut.rotateall(0, 160f);
+          
+
+            chumbucket.child.Add(chumbucketatribut);
+
+            chumbucket.translate(0, .02f, 0);
+
+
+        }
+
         protected override void OnLoad()
         {
             GL.ClearColor(0.235f, 0.7f, 0.9f, 1.0f);
@@ -1000,6 +1036,9 @@ namespace UASGrafkom
 
             //mr crab
             createmrcrab();
+
+            //chumbucket
+            createchumbucket();
 
             // Camera
             var _cameraPosInit = new Vector3(0, 0, 0);
@@ -1038,6 +1077,8 @@ namespace UASGrafkom
                 rumahspongbase.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 rumahpatrick.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
                 framekrusty.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+                chumbucket.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
+
 
                 //characters
                 squidwardmain.render(_camera, new Vector3(1f, 1f, 1f), _sunPos);
