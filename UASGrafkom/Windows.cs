@@ -1301,7 +1301,7 @@ namespace UASGrafkom
                 {
                     _objectPos = cameraFocus.getRealPos();
                     //_camera.Position = new Vector3(0);
-                    var axis = new Vector3(0, 1, 0);
+                    var axis = new Vector3(0, 1800, 0)*(float)args.Time;
                     _camera.Position -= _objectPos;
                     _camera.Yaw -= _rotationSpeed;
                     _camera.Position = Vector3.Transform(_camera.Position,
@@ -1335,7 +1335,7 @@ namespace UASGrafkom
                 if (KeyboardState.IsKeyDown(Keys.F2))
                 {
                     _objectPos = cameraFocus.getRealPos();
-                    var axis = new Vector3(0, 1, 0);
+                    var axis = new Vector3(0, 1200, 0) * (float)args.Time; ;
                     _camera.Position -= _objectPos;
                     _camera.Yaw -= _rotationSpeed;
                     _camera.Position = Vector3.Transform(_camera.Position,
@@ -1368,7 +1368,7 @@ namespace UASGrafkom
                 {
                     _objectPos = cameraFocus.getRealPos();
                     //_camera.Position = new Vector3(0);
-                    var axis = new Vector3(0, 1, 0);
+                    var axis = new Vector3(0, 1200, 0) * (float)args.Time; ;
                     _camera.Position -= _objectPos;
                     _camera.Yaw -= _rotationSpeed;
                     _camera.Position = Vector3.Transform(_camera.Position,
