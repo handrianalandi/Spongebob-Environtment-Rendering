@@ -8,6 +8,14 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
+/*
+###########################################
+#      Felicia Laksana - C14190054        #
+#      Levina Charin   - C14190145        #
+#      Handrian Alandi - C14190231        #
+###########################################
+*/
+
 namespace UASGrafkom
 {
     class Windows : GameWindow
