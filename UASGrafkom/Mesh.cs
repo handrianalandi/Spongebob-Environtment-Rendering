@@ -109,7 +109,7 @@ namespace UASGrafkom
                 realVertices.Count * sizeof(float),
                 realVertices.ToArray(),
                 BufferUsageHint.StaticDraw);
-            _shader = new Shader("../../../Shaders/shaderl.vert", "../../../Shaders/" + abc + ".frag");
+            _shader = new Shader("../../../Shaders/lighting.vert", "../../../Shaders/" + abc + ".frag");
 
             _vertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(_vertexArrayObject);
